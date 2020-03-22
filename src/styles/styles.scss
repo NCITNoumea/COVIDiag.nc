@@ -1,0 +1,53 @@
+@import 'variables';
+@import '../../node_modules/ngx-toastr/toastr.css';
+
+html, body {
+  height: 100%;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  font-family: 'Roboto', sans-serif !important;
+  font-size: 14px;
+  background: $grey-100 !important;
+}
+
+// Common components styles.
+
+.custom-search-input {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+  align-items: center;
+  border: solid 1px $grey-400;
+  height: 50px;
+  margin-left: auto;
+  margin-right: auto;
+
+  // Adjust the search bar width with the screen size.
+  @media (max-width: $x-break-point) {
+      width: 400px;
+  }
+
+  @media (min-width: $x-break-point) {
+      width: 600px;
+  }
+}
+
+.dropdown-tooltip {
+  max-width: 200px;
+  text-align: center;
+}
+
+.k-popup {
+  border-radius: 0 !important;
+}
+
+.btn-primary {
+  background-color: $white !important;
+  border-color: $primary !important;
+  color: $primary !important;
+  border-radius: 50px !important;
+  padding: 5px 16px !important;
+  font-weight: 500 !important;
+}

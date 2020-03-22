@@ -1,0 +1,37 @@
+$white: #fff !default;
+$grey-100: #F8F9FA !default;
+$grey-200: #E9ECEF !default;
+$grey-300: #DEE2E6 !default;
+$grey-400: #CED4DA !default;
+$grey-500: #ADB5BD !default;
+$grey-600: #6C757D !default;
+$grey-700: #495057 !default;
+$grey-800: #343A40 !default;
+$grey-900: #212529 !default;
+$black: #000 !default;
+
+$blue: #013560 !default; // #013560
+$indigo: #6610F2 !default;
+$purple: #6F42C1 !default;
+$pink: #E83E8C !default;
+$red: #DC3545 !default;
+$orange: #F97924 !default;
+$yellow: #FFC107 !default;
+$green: #28A745 !default;
+$teal: #20C997 !default;
+$perano: #A2D5F2 !default;
+$link-water: #EDF1FA !default;
+
+$primary: $blue !default;
+$secondary: $white !default;
+$success: $green !default;
+$info: $perano !default;
+$warning: $yellow !default;
+$danger: $red !default;
+$light: $grey-100 !default;
+$dark: $grey-800 !default;
+
+$default-padding: 1rem;
+
+$x-break-point: 1200px;
+$y-break-point: 630px;

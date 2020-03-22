@@ -1,0 +1,31 @@
+@import 'variables';
+
+.nav.navbar-nav {
+    font-size: 15px;
+}
+
+.navbar-form {
+    padding: 0px;
+}
+
+.navbar-brand {
+  color: $grey-700;
+  font-weight: bold;
+}
+
+.navbar-light .navbar-nav .nav-link {
+    color: $primary;
+    font-weight: 600;
+}
+
+li > a.active {
+    color: $dark;
+}
+
+.search-input {
+    max-width: 150px;
+}
+
+/*
+@media (max-width: 1200px) { #searchForm {display} }
+*/
