@@ -2,7 +2,9 @@
   <div class="container">
     <p class="lead text-muted">Ce site vous permet de vérifier vos symptomes par rapport à l'épidémie de COVID-19 afin de vous orienter vers la meilleure solution pour vous, en Nouvelle-Calédonie.</p>
     <p class="mb-0">
-      <a href="#" class="btn btn-secondary my-2"><strong>Démarrer le diagnostic</strong></a>
+      <a class="btn btn-secondary my-2"  [routerLink]="['/diagnostic']" routerLinkActive="active"  [routerLinkActiveOptions]="{exact:true}">
+        <strong>Démarrer le diagnostic</strong>
+      </a>
     </p>
   </div>
 </section>

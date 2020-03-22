@@ -1,1 +1,26 @@
-<p>diagnostic works!</p>
+
+<section class="jumbotron text-center">
+  <h5>Question 1 sur 23</h5>
+  <h4>Age, poids et taille</h4>
+  <div>
+    <form #adForm="ngForm" (ngSubmit)="createAd(adForm)" autocomplete="off">
+        <div class="form-group row">
+          <label class="col-xs-4 col-form-label" for="age">Age</label>
+          <div class="col-xs-6">
+            <input class="form-control" (ngModel)="(age)" name="age" id="age" type="text" required/>
+          </div>
+          <label class="col-xs-2 col-form-label" for="age">ans</label>
+        </div>
+
+        <div class="form-group">
+          <label for="poids">Poids</label>
+          <input class="form-control" (ngModel)="(poids)" name="poids" id="poids" type="text" required/>
+        </div>
+
+        <div class="form-group">
+          <label for="taille">Taille</label>
+          <input class="form-control" (ngModel)="(taille)" name="taille" id="taille" type="text" required/>
+        </div>
+    </form>
+  </div>
+</section>
