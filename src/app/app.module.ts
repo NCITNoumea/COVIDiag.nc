@@ -15,7 +15,6 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { ToastrModule } from 'ngx-toastr'
 
 import { CovidiagAppComponent } from './covidiagnc-app.component';
-import { HomeComponent } from './home/home.component';
 
 import {
   NavbarComponent,
@@ -23,13 +22,27 @@ import {
   SearchBarComponent
 } from './shared/index';
 
+import { HomeComponent } from './home/home.component';
+import { UsefullLinksComponent } from './home/usefull-links/usefull-links.component';
+import { DiagnosticComponent } from './diagnostic/diagnostic.component';
+import { SearchDiagnosticComponent } from './search-diagnostic/search-diagnostic.component';
+import { HeaderComponent } from './shared/header/header.component';
+import { MainComponent } from './shared/main/main.component';
+import { FooterComponent } from './shared/footer/footer.component';
+
 @NgModule({
   declarations: [
     CovidiagAppComponent,
     HomeComponent,
     NavbarComponent,
     Error404Component,
-    SearchBarComponent
+    SearchBarComponent,
+    DiagnosticComponent,
+    UsefullLinksComponent,
+    SearchDiagnosticComponent,
+    HeaderComponent,
+    MainComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

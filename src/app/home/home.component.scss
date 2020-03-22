@@ -1,0 +1,10 @@
+@import 'variables';
+
+.jumbotron-primary {
+  background-color: $primary;
+  margin-bottom: 1rem;
+}
+
+.text-muted {
+  color: $secondary !important;
+}

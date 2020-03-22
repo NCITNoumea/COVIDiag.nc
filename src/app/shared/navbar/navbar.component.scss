@@ -4,26 +4,13 @@
     font-size: 15px;
 }
 
-.navbar-form {
-    padding: 0px;
-}
-
 .navbar-brand {
-  color: $grey-700;
+  color: $primary;
   font-weight: bold;
 }
 
-.navbar-light .navbar-nav .nav-link {
-    color: $primary;
-    font-weight: 600;
-}
-
-li > a.active {
-    color: $dark;
-}
-
-.search-input {
-    max-width: 150px;
+.nav-link {
+  font-weight: bold;
 }
 
 /*
