@@ -1,5 +1,99 @@
+<div class="container px-0 h-100">
+  <div class="container-fluid">
+    <section class="jumbotron text-center">
+      <p *ngIf="currentQuestionId > 0" (click)="backToPrevious(currentQuestionId)">Précédent</p>
+      <h4>{{currentQuestion.question}}</h4>
 
-<section class="jumbotron text-center">
+      <!-- Si INPUT il y a -->
+      <div class="row" *ngIf="!isAnswerOnClick(currentQuestion)">
+        <div class="col-12" *ngFor='let answer of currentQuestion.answers'>
+          <div class="card">
+        
+            <div class="card-body" *ngIf="isTemperature(currentQuestion)">
+              <input type="number" step="0.1" [value]="inputTemperature" (input)="inputTemperature = $event.target.value;" />
+              °c
+            </div>
+
+            <div *ngIf="isAge(currentQuestion)">
+              <input type="number" step="1" (input)="inputAge = $event.target.value;" />
+              ans
+            </div>
+
+            <div *ngIf="isPoids(currentQuestion)">
+              <input type="number" step="1" (input)="inputPoids = $event.target.value;" />
+              kg
+            </div>
+
+            <div *ngIf="isTaille(currentQuestion)">
+              <input type="number" step="1" (input)="inputTaille = $event.target.value;" />
+              cm
+            </div>
+
+            <div *ngIf="isPostalCode(currentQuestion)">
+              <input type="text" inputmode="numeric" pattern="^(?(^00000(|-0000))|(\d{5}(|-\d{4})))$" (input)="inputPostalCode = $event.target.value;" />
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- OUI/NON -->
+      <div class="row" *ngIf="currentQuestion.answers.length == 2">
+        <div class="col-6" *ngFor='let answer of currentQuestion.answers'>
+          <div class="card" (click)="onClick(answer)">
+            <div class="card-body">
+              <span class="h2 mb-0">
+                {{answer.label}}
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CONTINUER -->
+      <div class="row" *ngIf="currentQuestion.answers.length == 1">
+        <div class="col-12" *ngFor='let answer of currentQuestion.answers'>
+          <div class="card" (click)="onClick(answer)">
+            <div class="card-body">
+              <span class="h2 mb-0">
+                {{answer.label}}
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MULTIPLE 3 -->
+      <div class="row" *ngIf="currentQuestion.answers.length == 3">
+        <div class="col-4" *ngFor='let answer of currentQuestion.answers'>
+          <div class="card" (click)="onClick(answer)">
+            <div class="card-body">
+              <span class="h2 mb-0">
+                {{answer.label}}
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MULTIPLE 4 -->
+      <div class="row" *ngIf="currentQuestion.answers.length == 4">
+        <div class="col-3" *ngFor='let answer of currentQuestion.answers'>
+          <div class="card" (click)="onClick(answer)">
+            <div class="card-body">
+              <span class="h2 mb-0">
+                {{answer.label}}
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+  </div>
+</div>
+
+<!--section class="jumbotron text-center">
   <h5>Question 1 sur 23</h5>
   <h4>Age, poids et taille</h4>
   <div>
@@ -23,4 +117,4 @@
         </div>
     </form>
   </div>
-</section>
+</section-->
