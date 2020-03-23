@@ -50,6 +50,7 @@ export type QuestionId =
 /**
  * Questionnaire
  */
+export const questionnaire_length = 23;
 export const questionnaire = {
     fievre: new Question(
         'fievre',

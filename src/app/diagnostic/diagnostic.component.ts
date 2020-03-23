@@ -1,6 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
-import { ISurvey, Question, questionnaire } from '../shared/models/question.model';
+import { ISurvey, Question, questionnaire, questionnaire_length } from '../shared/models/question.model';
 import { Answer, AnswerType, AnsweredQuestion } from '../shared/models/answer.model';
 
 
@@ -13,6 +13,7 @@ export class DiagnosticComponent implements OnInit {
   public survey: ISurvey;
   public currentQuestion: Question;
   public currentQuestionId: number;
+  public surveyLength: number;
 
   public inputTemperature: number;
   public inputAge: number;
@@ -33,6 +34,7 @@ export class DiagnosticComponent implements OnInit {
     this.currentQuestionId = 0;
     this.inputTemperature = 37.5;
     this.currentQuestion = Object.assign({}, questionnaire.fievre);
+    this.surveyLength = questionnaire_length;
   }
 
   onClick(answer: Answer) {
@@ -50,7 +52,7 @@ export class DiagnosticComponent implements OnInit {
       nextQuestionId = oldQuestion.nextQuestionId;
       this.currentQuestion = Object.assign({}, questionnaire[oldQuestion.nextQuestionId]);
     }
-    
+
     const answeredQuestion = new AnsweredQuestion(
       oldQuestion.id,
       nextQuestionId,

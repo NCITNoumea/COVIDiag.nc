@@ -1,36 +1,53 @@
-<div class="container px-0 h-100">
+<div class="container px-3 h-100">
   <div class="container-fluid">
     <section class="jumbotron text-center">
-      <p *ngIf="currentQuestionId > 0" (click)="backToPrevious(currentQuestionId)">Précédent</p>
+      <p class="survey-position">Question {{currentQuestionId+1}} sur {{surveyLength}}</p>
       <h4>{{currentQuestion.question}}</h4>
 
       <!-- Si INPUT il y a -->
       <div class="row" *ngIf="!isAnswerOnClick(currentQuestion)">
         <div class="col-12" *ngFor='let answer of currentQuestion.answers'>
           <div class="card">
-        
-            <div class="card-body" *ngIf="isTemperature(currentQuestion)">
-              <input type="number" step="0.1" [value]="inputTemperature" (input)="inputTemperature = $event.target.value;" />
-              °c
+            <div class="card-body form-inline" *ngIf="isTemperature(currentQuestion)">
+              <div class="form-group mx-3 mb-0">
+                <input type="number" class="form-control text-center" step="0.1" [value]="inputTemperature" (input)="inputTemperature = $event.target.value;" />
+              </div>
+              <div class="form-group mx-3 mb-0">
+                <label>°c</label>
+              </div>
             </div>
 
-            <div *ngIf="isAge(currentQuestion)">
-              <input type="number" step="1" (input)="inputAge = $event.target.value;" />
-              ans
+            <div class="card-body form-inline" *ngIf="isAge(currentQuestion)">
+              <div class="form-group mx-3 mb-0">
+                <input type="number" class="form-control text-center" step="1" placeholder="ex : 45" (input)="inputAge = $event.target.value;"/>
+              </div>
+              <div class="form-group mx-3 mb-0">
+                <label>ans</label>
+              </div>
             </div>
 
-            <div *ngIf="isPoids(currentQuestion)">
-              <input type="number" step="1" (input)="inputPoids = $event.target.value;" />
-              kg
+            <div class="card-body form-inline" *ngIf="isPoids(currentQuestion)">
+              <div class="form-group mx-3 mb-0">
+                <input type="number" class="form-control text-center" step="1" placeholder="ex : 70" (input)="inputPoids = $event.target.value;" />
+              </div>
+              <div class="form-group mx-3 mb-0">
+                <label>kg</label>
+              </div>
             </div>
 
-            <div *ngIf="isTaille(currentQuestion)">
-              <input type="number" step="1" (input)="inputTaille = $event.target.value;" />
-              cm
+            <div class="card-body form-inline" *ngIf="isTaille(currentQuestion)">
+              <div class="form-group mx-3 mb-0">
+                <input type="number" class="form-control text-center" step="1" placeholder="ex : 175" (input)="inputTaille = $event.target.value;" />
+              </div>
+              <div class="form-group mx-3 mb-0">
+                <label>cm</label>
+              </div>
             </div>
 
-            <div *ngIf="isPostalCode(currentQuestion)">
-              <input type="text" inputmode="numeric" pattern="^(?(^00000(|-0000))|(\d{5}(|-\d{4})))$" (input)="inputPostalCode = $event.target.value;" />
+            <div class="card-body" *ngIf="isPostalCode(currentQuestion)">
+              <div class="form-group mx-3 mb-0">
+                <input class="form-control text-center" pattern="[0-9]{5}" type="text" placeholder="ex : 98800" (input)="inputPostalCode = $event.target.value;" />
+              </div>
             </div>
 
           </div>
@@ -39,40 +56,30 @@
 
       <!-- OUI/NON -->
       <div class="row" *ngIf="currentQuestion.answers.length == 2">
-        <div class="col-6" *ngFor='let answer of currentQuestion.answers'>
-          <div class="card" (click)="onClick(answer)">
-            <div class="card-body">
-              <span class="h2 mb-0">
+        <div class="col-3"></div>
+        <div class="col-3" *ngFor='let answer of currentQuestion.answers'>
+            <p class="mb-0 btn btn-info my-2" (click)="onClick(answer)">
                 {{answer.label}}
-              </span>
-            </div>
-          </div>
+            </p>
         </div>
+        <div class="col-3"></div>
       </div>
 
-      <!-- CONTINUER -->
+      <!-- CONTINUER - TODO Bouton grisé tant que input pas renseigné -->
       <div class="row" *ngIf="currentQuestion.answers.length == 1">
         <div class="col-12" *ngFor='let answer of currentQuestion.answers'>
-          <div class="card" (click)="onClick(answer)">
-            <div class="card-body">
-              <span class="h2 mb-0">
-                {{answer.label}}
-              </span>
-            </div>
-          </div>
+          <p class="mb-0 btn btn-info my-2" (click)="onClick(answer)">
+              {{answer.label}}
+          </p>
         </div>
       </div>
 
-      <!-- MULTIPLE 3 -->
+      <!-- MULTIPLE 3 - TODO Restyliser le multiple 3-->
       <div class="row" *ngIf="currentQuestion.answers.length == 3">
         <div class="col-4" *ngFor='let answer of currentQuestion.answers'>
-          <div class="card" (click)="onClick(answer)">
-            <div class="card-body">
-              <span class="h2 mb-0">
-                {{answer.label}}
-              </span>
-            </div>
-          </div>
+          <p class="mb-0 btn btn-info my-2" (click)="onClick(answer)">
+              {{answer.label}}
+          </p>
         </div>
       </div>
 
@@ -88,8 +95,15 @@
           </div>
         </div>
       </div>
-
     </section>
+
+    <!-- Précédent -->
+    <div class="my-4 text-left">
+      <p *ngIf="currentQuestionId > 0" class="btn btn-dark" (click)="backToPrevious(currentQuestionId)">
+        &#60; Précédent
+      </p>
+    </div>
+
   </div>
 </div>
 
