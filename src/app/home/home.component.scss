@@ -1,5 +1,9 @@
 @import 'variables';
 
+.container {
+  max-width: 50rem;
+}
+
 .jumbotron-primary {
   background-color: $primary;
   margin-bottom: 1rem;

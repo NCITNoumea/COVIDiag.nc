@@ -27,6 +27,10 @@ header > h3 {
     font-size: 110%;
 }
 
+.container {
+  max-width: 50rem;
+}
+
 .card {
   background-color: $jumbotron-color;
   border: 0;
