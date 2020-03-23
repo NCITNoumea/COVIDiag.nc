@@ -28,7 +28,7 @@ export const appRoutes: Routes = [
     */
     /*{ path: "user", loadChildren: "./modules/user/user.module#UserModule" }*/
     {
-      path: "home",
+      path: "",
       component: HomeComponent
     },
     {
@@ -40,6 +40,5 @@ export const appRoutes: Routes = [
       component: SearchDiagnosticComponent
     },
     { path: "404", component: Error404Component },
-    { path: "", redirectTo: "/home", pathMatch: "full" }
-
-];
+    { path: "", redirectTo: "", pathMatch: "full" }
+  ];
