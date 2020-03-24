@@ -1,13 +1,14 @@
 @import 'variables';
 
 .container {
-  max-width: 50rem;
+  max-width: 70rem;
 }
 
 .jumbotron-primary {
   background-color: $primary;
   margin-bottom: 0.1rem;
   border-radius: 0;
+  padding: 2rem 1rem;
 }
 
 .text-muted {
