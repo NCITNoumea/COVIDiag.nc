@@ -25,6 +25,7 @@ export type QuestionId =
   | 'fievre'
   | 'temperature'
   | 'toux'
+  | 'difficulte_respiratoire'
   | 'gout_odorat'
   | 'maladie_cardiaque'
   | 'diabetique'
@@ -35,6 +36,7 @@ export type QuestionId =
   | 'enceinte'
   | 'maladie_immunitaire'
   | 'immunosuppresseurs'
+  | 'voyage_recent'
   | 'age'
   | 'taille'
   | 'poids'
@@ -57,21 +59,28 @@ export const questionnaire = {
         'Pensez-vous avoir ou avoir eu de la fièvre ces derniers jours (frissons, sueurs) ?',
         AnswerType.Binary,
         [ { label: 'Oui' }, { label: 'Non' } ],
-        'temperature'
+        'toux'
     ),
-    temperature: new Question(
+    /*temperature: new Question(
         'temperature',
         'Quelle est votre température corporelle ?',
         AnswerType.Temperature,
         [ { label: 'Valider' } ],
         'toux'
-    ),
+    ),*/
     toux: new Question(
         'toux',
         'Ces derniers jours, avez-vous une toux ou une augmentation de votre toux habituelle ?',
         AnswerType.Binary,
         [ { label: 'Oui' }, { label: 'Non' } ],
-        'gout_odorat'
+        'difficulte_respiratoire'
+    ),
+    difficulte_respiratoire: new Question(
+      'difficulte_respiratoire',
+      'Ces dernieres 24h, avez-vous noté une gène respiratoire inhabituelle ou une augmentation de votre gène respiratoire habituelle ?',
+      AnswerType.Binary,
+      [ { label: 'Oui' }, { label: 'Non' } ],
+      'gout_odorat'
     ),
     gout_odorat: new Question(
         'gout_odorat',
@@ -113,14 +122,21 @@ export const questionnaire = {
         'Êtes vous dans l\'impossibilité de vous alimenter ou de boire depuis 24 heures ou plus?',
         AnswerType.Binary,
         [ { label: 'Oui' }, { label: 'Non' } ],
-        'manque_souffle_inhabituel'
+        'voyage_recent'
     ),
-    manque_souffle_inhabituel: new Question(
+    /*manque_souffle_inhabituel: new Question(
         'manque_souffle_inhabituel',
         'Dans les dernières 24 heures, avez-vous noté un manque de souffle inhabituel lorsque vous parlez ou faites un petit effort ?',
         AnswerType.Binary,
         [ { label: 'Oui' }, { label: 'Non' } ],
         'age'
+    ),*/
+    voyage_recent: new Question(
+      'voyage_recent',
+      'Avez vous voyagé en dehors de Nouvelle-Calédonie lors des 15 derniers jours ?',
+      AnswerType.Age,
+      [ { label: 'Continuer' } ],
+      'age'
     ),
     age: new Question(
         'age',
