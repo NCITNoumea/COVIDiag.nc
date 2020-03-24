@@ -1,12 +1,27 @@
 <section class="jumbotron jumbotron-primary text-center">
   <div class="container">
-    <p class="lead text-muted">Ce site vous permet de vérifier vos symptomes par rapport à l'épidémie de COVID-19 afin de vous orienter vers la meilleure solution pour vous, en Nouvelle-Calédonie.</p>
+    <!--p class="lead text-muted">
+      Ce site vous permet de vérifier vos symptomes par rapport à l'épidémie de COVID-19 afin de vous orienter vers la meilleure solution pour vous, en Nouvelle-Calédonie.
+    </p-->
+    <p class="lead text-muted">
+      <strong>
+        Vous pensez avoir été exposé au Coronavirus COVID-19 ici en Nouvelle-Calédonie et avez des symptômes ?
+      </strong>
+    </p>
+    <p class="lead text-muted">
+      Faites le test pour savoir comment réagir selon vos symptômes.
+    </p>
     <p class="mb-0">
       <a class="btn btn-secondary my-2"  [routerLink]="['/diagnostic']" routerLinkActive="active"  [routerLinkActiveOptions]="{exact:true}">
-        <strong>Démarrer le diagnostic</strong>
+        <strong>
+          Démarrer le test
+          <fa-icon [icon]="['fa', 'arrow-right']"></fa-icon>
+        </strong>
       </a>
     </p>
   </div>
 </section>
+
+<app-paracetamol-only></app-paracetamol-only>
 
 <app-usefull-links></app-usefull-links>

@@ -1,0 +1,12 @@
+@import 'variables';
+
+.jumbotron {
+  background-color: $yellow;
+  color: $black;
+  margin-bottom: 1rem;
+}
+
+a {
+  color: $link;
+  //text-decoration: underline;
+}

@@ -10,7 +10,7 @@ import { InMemoryCache } from 'apollo-cache-inmemory';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faSearch, faInfoCircle, faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
+import { faSearch, faInfoCircle, faExclamationTriangle, faArrowRight, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 
 import { ToastrModule } from 'ngx-toastr'
 
@@ -31,6 +31,7 @@ import { MainComponent } from './shared/main/main.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { RecommendationComponent } from './diagnostic/recommendation/recommendation.component';
 import { DiagnosticResultComponent } from './diagnostic-result/diagnostic-result.component';
+import { ParacetamolOnlyComponent } from './shared/paracetamol-only/paracetamol-only.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { DiagnosticResultComponent } from './diagnostic-result/diagnostic-result
     MainComponent,
     FooterComponent,
     RecommendationComponent,
-    DiagnosticResultComponent
+    DiagnosticResultComponent,
+    ParacetamolOnlyComponent
   ],
   imports: [
     BrowserModule,
@@ -69,7 +71,7 @@ export class AppModule {
     httpLink: HttpLink
   ) {
     // Ajout des composants icones Font-Awesome utilisés
-    library.add(faSearch, faInfoCircle, faExclamationTriangle);
+    library.add(faSearch, faInfoCircle, faExclamationTriangle, faArrowRight, faArrowLeft);
 
     // Connexion au serveur GraphQL
     apollo.create({

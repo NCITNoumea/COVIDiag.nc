@@ -100,7 +100,8 @@
     <!-- Précédent -->
     <div class="my-4 text-left">
       <p *ngIf="currentQuestionId > 0" class="btn btn-dark" (click)="backToPrevious(currentQuestionId)">
-        &#60; Précédent
+        <fa-icon [icon]="['fa', 'arrow-left']"></fa-icon>
+        Précédent
       </p>
     </div>
 
