@@ -110,14 +110,14 @@ export const questionnaire = {
     ),
     impossibilite_alimentation: new Question(
         'impossibilite_alimentation',
-        'Êtes vous dans l\'impossibilité de vous alimenter ou de boire DEPUIS 24 HEURES OU PLUS ?',
+        'Êtes vous dans l\'impossibilité de vous alimenter ou de boire depuis 24 heures ou plus?',
         AnswerType.Binary,
         [ { label: 'Oui' }, { label: 'Non' } ],
         'manque_souffle_inhabituel'
     ),
     manque_souffle_inhabituel: new Question(
         'manque_souffle_inhabituel',
-        'Dans les dernières 24 heures, avez-vous noté un manque de souffle INHABITUEL lorsque vous parlez ou faites un petit effort ?',
+        'Dans les dernières 24 heures, avez-vous noté un manque de souffle inhabituel lorsque vous parlez ou faites un petit effort ?',
         AnswerType.Binary,
         [ { label: 'Oui' }, { label: 'Non' } ],
         'age'
