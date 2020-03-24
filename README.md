@@ -1,5 +1,5 @@
 # COVIDiag.nc
-Application d'orientation des malades en fonction de leurs symptômes lors de l'épidémie de COVID-19 en Nouvelle-Calédonie
+Application d'orientation des malades en fonction de leurs symptômes lors de l'épidémie de COVID-19 en Nouvelle-Calédonie. L'application est accessible ici : [https://covidiagnc.web.app/](https://covidiagnc.web.app/)
 
 Projet généré via [Angular CLI](https://github.com/angular/angular-cli) version 8.3.8.
 
