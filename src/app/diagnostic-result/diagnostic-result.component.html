@@ -1,0 +1,20 @@
+<div class="container px-3 h-100 py-lg-5 my-lg-5">
+  <div class="container-fluid">
+    <section class="jumbotron text-center">
+      <h4>Réponses au questionnaire</h4>
+
+      <div class="row" *ngFor='let result of surveyResults'>
+        <div class="col-9">
+            <p class="mb-0 my-2">
+                {{result.question.question}}
+            </p>
+        </div>
+        <div class="col-3">
+            <p class="mb-0 my-2">
+                {{result.answer}}
+            </p>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>

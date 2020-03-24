@@ -4,7 +4,7 @@ export type ISurvey = Array<IIndexedQuestion>;
 
 export interface IIndexedQuestion {
   index: number;
-  questionId: QuestionId;
+  question: Question;
   answer: string;
 }
 

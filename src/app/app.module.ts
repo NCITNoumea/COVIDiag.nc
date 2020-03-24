@@ -10,7 +10,7 @@ import { InMemoryCache } from 'apollo-cache-inmemory';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import { faSearch, faInfoCircle, faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
 
 import { ToastrModule } from 'ngx-toastr'
 
@@ -29,6 +29,8 @@ import { SearchDiagnosticComponent } from './search-diagnostic/search-diagnostic
 import { HeaderComponent } from './shared/header/header.component';
 import { MainComponent } from './shared/main/main.component';
 import { FooterComponent } from './shared/footer/footer.component';
+import { RecommendationComponent } from './diagnostic/recommendation/recommendation.component';
+import { DiagnosticResultComponent } from './diagnostic-result/diagnostic-result.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +44,9 @@ import { FooterComponent } from './shared/footer/footer.component';
     SearchDiagnosticComponent,
     HeaderComponent,
     MainComponent,
-    FooterComponent
+    FooterComponent,
+    RecommendationComponent,
+    DiagnosticResultComponent
   ],
   imports: [
     BrowserModule,
@@ -65,7 +69,7 @@ export class AppModule {
     httpLink: HttpLink
   ) {
     // Ajout des composants icones Font-Awesome utilisés
-    library.add(faSearch);
+    library.add(faSearch, faInfoCircle, faExclamationTriangle);
 
     // Connexion au serveur GraphQL
     apollo.create({

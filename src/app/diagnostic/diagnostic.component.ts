@@ -10,10 +10,11 @@ import { Answer, AnswerType, AnsweredQuestion } from '../shared/models/answer.mo
   styleUrls: ['./diagnostic.component.scss']
 })
 export class DiagnosticComponent implements OnInit {
-  public survey: ISurvey;
+  public surveyResults: ISurvey;
   public currentQuestion: Question;
   public currentQuestionId: number;
   public surveyLength: number;
+  public surveyFinished: boolean;
 
   public inputTemperature: number;
   public inputAge: number;
@@ -30,7 +31,8 @@ export class DiagnosticComponent implements OnInit {
   }
 
   public reset() {
-    this.survey = [];
+    this.surveyResults = [];
+    this.surveyFinished = false;
     this.currentQuestionId = 0;
     this.inputTemperature = 37.5;
     this.currentQuestion = Object.assign({}, questionnaire.fievre);
@@ -46,8 +48,9 @@ export class DiagnosticComponent implements OnInit {
     let nextQuestionId;
     if (this.currentQuestion.nextQuestionId == null) {
       nextQuestionId = null;
-      // Fin du questionnaire - TODO Rediriger vers page avec conseils + stocker résultats en BDD
-      console.log(this.survey);
+      // Fin du questionnaire
+      console.log(this.surveyResults);
+      this.surveyFinished = true;
     } else {
       nextQuestionId = oldQuestion.nextQuestionId;
       this.currentQuestion = Object.assign({}, questionnaire[oldQuestion.nextQuestionId]);
@@ -92,19 +95,20 @@ export class DiagnosticComponent implements OnInit {
       }
     }
 
-    this.survey.push({
-      index: this.survey.length,
-      questionId: this.currentQuestion.id,
+    this.surveyResults.push({
+      index: this.surveyResults.length,
+      question: this.currentQuestion,
       answer: answerValue
     });
   }
 
   public backToPrevious(currentQuestionIndex: number) {
     let questionIndex = currentQuestionIndex-1;
-    const newQuestion = this.survey.find(question => question.index === questionIndex);
-    this.survey.length = questionIndex;
-    this.currentQuestion = Object.assign({}, questionnaire[newQuestion.questionId]);
+    const newQuestion = this.surveyResults.find(question => question.index === questionIndex);
+    this.surveyResults.length = questionIndex;
+    this.currentQuestion = Object.assign({}, questionnaire[newQuestion.question.id]);
     this.currentQuestionId--;
+    this.surveyFinished = false;
   }
 
   public isAnswerOnClick(question: Question): boolean {

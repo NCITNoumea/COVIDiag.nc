@@ -1,4 +1,4 @@
-<div class="container px-3 h-100 py-lg-5 my-lg-5">
+<div *ngIf="!surveyFinished" class="container px-3 h-100 py-lg-5 my-lg-5">
   <div class="container-fluid">
     <section class="jumbotron text-center">
       <p class="survey-position">Question {{currentQuestionId+1}} sur {{surveyLength}}</p>
@@ -44,9 +44,9 @@
               </div>
             </div>
 
-            <div class="card-body justify-content-center" *ngIf="isPostalCode(currentQuestion)">
+            <div class="card-body form-inline justify-content-center" *ngIf="isPostalCode(currentQuestion)">
               <div class="form-group mx-3 mb-0">
-                <input class="form-control text-center" pattern="[0-9]{5}" type="text" placeholder="ex : 98800" (input)="inputPostalCode = $event.target.value;" />
+                <input class="form-control text-center" pattern="[0-9]{5}" type="text" placeholder="ex : 98800" (input)="inputPostalCode = $event.target.value;"/>
               </div>
             </div>
 
@@ -107,28 +107,7 @@
   </div>
 </div>
 
-<!--section class="jumbotron text-center">
-  <h5>Question 1 sur 23</h5>
-  <h4>Age, poids et taille</h4>
-  <div>
-    <form #adForm="ngForm" (ngSubmit)="createAd(adForm)" autocomplete="off">
-        <div class="form-group row">
-          <label class="col-xs-4 col-form-label" for="age">Age</label>
-          <div class="col-xs-6">
-            <input class="form-control" (ngModel)="(age)" name="age" id="age" type="text" required/>
-          </div>
-          <label class="col-xs-2 col-form-label" for="age">ans</label>
-        </div>
+<div *ngIf="surveyFinished">
+  <app-recommendation [surveyResults]="surveyResults"></app-recommendation>
+</div>
 
-        <div class="form-group">
-          <label for="poids">Poids</label>
-          <input class="form-control" (ngModel)="(poids)" name="poids" id="poids" type="text" required/>
-        </div>
-
-        <div class="form-group">
-          <label for="taille">Taille</label>
-          <input class="form-control" (ngModel)="(taille)" name="taille" id="taille" type="text" required/>
-        </div>
-    </form>
-  </div>
-</section-->

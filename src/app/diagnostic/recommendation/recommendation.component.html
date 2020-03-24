@@ -1,0 +1,63 @@
+<section class="jumbotron jumbotron-primary text-left">
+  <div class="container">
+    <h4 class="text-center">Recommandation</h4>
+
+    <div class="alert alert-light" role="alert">
+      <fa-icon [icon]="['fa', 'info-circle']"></fa-icon>
+      La recommandation affichée peut évoluer suivant les informations en provenance des autorités de santé et des chercheurs. Elle ne constitue pas un avis médical. En cas de doute, demandez conseil à votre médecin ou pharmacien.
+    </div>
+
+    <div *ngIf="isAppeler15()">
+      <h5 class="text-center my-4">
+        <strong>Vos symptômes nécessitent <u>une prise en charge rapide.</u></strong>
+      </h5>
+
+      <div class="alert alert-primary" role="alert">
+        <h5 class="text-center">
+          <fa-icon [icon]="['fa', 'exclamation-triangle']"></fa-icon>
+          <strong> Appelez le 15</strong>
+        </h5>
+
+        <p class="mb-0"> Suivant votre ville et votre état de santé, le SAMU pourra vous orienter vers un dispensaire de médecine générale.</p>
+
+        <p class="mt-3 mb-0"><strong>Surveillez attentivement votre état de santé.</strong></p>
+        <ul>
+          <li>N’hésitez pas à contacter votre médecin en cas de doute</li>
+          <li>Mesurez votre température deux fois par jour</li>
+          <li>Refaites ce test en cas de nouveau symptôme pour réévaluer la situation</li>
+          <li>Restez chez vous en attendant que les symptômes disparaissent, mais restez attentif à toute aggravation</li>
+        </ul>
+
+        <p class="mt-3 mb-0"><strong>Restez chez vous.</strong></p>
+        <p>#RestezChezVous - Limitez les contacts avec d'autres personnes. Le virus peut être propagé par des porteurs ne montrant pas de symptômes.</p>
+      </div>
+    </div>
+
+    <div class="alert alert-light" role="alert">
+      <p class="mt-3 mb-0">
+        <fa-icon [icon]="['fa', 'info-circle']"></fa-icon>
+        <strong> Vous avez des questions sur la prise de vos médicaments ?</strong>
+      </p>
+      <p>
+        Pour vérifier si un médicament pourrait présenter un risque potentiel d'aggraver vos symptômes :
+        <a target="_blank" href="https://covid19-medicaments.com">https://covid19-medicaments.com</a>
+      </p>
+    </div>
+
+    <div class="alert alert-light" role="alert">
+      <p class="mt-3 mb-0">
+        <fa-icon [icon]="['fa', 'info-circle']"></fa-icon>
+        <strong> Vous avez des questions additionnelles ?</strong>
+      </p>
+      <p>
+        Suivez l'actualité sur
+        <a target="_blank" href="https://gouv.nc/coronavirus">https://gouv.nc/coronavirus</a>
+        ou appelez le numéro vert.
+      </p>
+      <div class="text-center mb-3">
+        <img class="numero_vert" src="/assets/img/numero_vert.png" alt=""/>
+      </div>
+    </div>
+
+  </div>
+</section>
