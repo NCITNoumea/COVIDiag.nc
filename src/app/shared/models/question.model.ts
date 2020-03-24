@@ -134,8 +134,8 @@ export const questionnaire = {
     voyage_recent: new Question(
       'voyage_recent',
       'Avez vous voyagé en dehors de Nouvelle-Calédonie lors des 15 derniers jours ?',
-      AnswerType.Age,
-      [ { label: 'Continuer' } ],
+      AnswerType.Binary,
+      [ { label: 'Oui' }, { label: 'Non' } ],
       'age'
     ),
     age: new Question(
