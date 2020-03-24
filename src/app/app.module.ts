@@ -25,13 +25,13 @@ import {
 import { HomeComponent } from './home/home.component';
 import { UsefullLinksComponent } from './home/usefull-links/usefull-links.component';
 import { DiagnosticComponent } from './diagnostic/diagnostic.component';
-import { SearchDiagnosticComponent } from './search-diagnostic/search-diagnostic.component';
+import { SearchDiagnosticComponent } from './diagnostic-search/search-diagnostic.component';
 import { HeaderComponent } from './shared/header/header.component';
 import { MainComponent } from './shared/main/main.component';
 import { FooterComponent } from './shared/footer/footer.component';
-import { RecommendationComponent } from './diagnostic/recommendation/recommendation.component';
+import { RecommendationComponent } from './diagnostic-recommendation/recommendation.component';
 import { DiagnosticResultComponent } from './diagnostic-result/diagnostic-result.component';
-import { ParacetamolOnlyComponent } from './shared/paracetamol-only/paracetamol-only.component';
+import { ParacetamolOnlyComponent } from './home/paracetamol-only/paracetamol-only.component';
 
 @NgModule({
   declarations: [
