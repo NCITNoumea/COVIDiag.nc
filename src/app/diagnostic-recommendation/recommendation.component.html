@@ -8,34 +8,18 @@
       La recommandation affichée peut évoluer suivant les informations en provenance des autorités de santé et des chercheurs. Elle ne constitue pas un avis médical. En cas de doute, demandez conseil à votre médecin ou pharmacien.
     </div>
 
-    <!-- Cas Médipole -->
-    <div *ngIf="isMedipole()">
-      <h5 class="text-center my-4">
-        <strong>Vos symptômes nécessitent <u>une prise en charge rapide.</u></strong>
-      </h5>
-
-      <div class="alert alert-primary" role="alert">
-        <h5 class="text-center mb-0">
-          <fa-icon [icon]="['fa', 'exclamation-triangle']"></fa-icon>
-          <strong> Rendez vous au Médipôle dès que possible. Appelez le 15 si vous souhaitez y être véhiculé.</strong>
-        </h5>
-      </div>
-    </div>
-
     <!-- Cas 15 / Numéro Local / Médecin -->
-    <div *ngIf="isAppeler15() || isAppelerNumeroLocal() || isAppelerMedecin()">
+    <div *ngIf="isAppeler15() || isAppelerMedecin()">
       <h4 class="text-center my-4">
         <strong *ngIf="isAppeler15()">Vos symptômes nécessitent <u>une prise en charge.</u></strong>
-        <strong *ngIf="isAppelerNumeroLocal()">Vos symptômes nécessitent <u>une consultation médicale.</u></strong>
-        <strong *ngIf="isAppelerMedecin()">Vos symptômes pourraient nécessiter <u>une consultation médicale.</u></strong>
+        <strong *ngIf="isAppelerMedecin()">Vos symptômes nécessitent <u>une consultation médicale.</u></strong>
       </h4>
 
       <div class="alert alert-primary" role="alert">
         <h4 class="text-center">
           <fa-icon [icon]="['fa', 'exclamation-triangle']"></fa-icon>
           <strong *ngIf="isAppeler15()"> Appelez le 15.</strong>
-          <strong *ngIf="isAppelerNumeroLocal()"> Appelez le {{localNumber}} ou votre médecin traitant.</strong>
-          <strong *ngIf="isAppelerMedecin()"> Contactez votre médecin traitant.</strong>
+          <strong *ngIf="isAppelerMedecin()"> Appelez le {{localNumber}} ou votre médecin traitant.</strong>
         </h4>
 
         <p *ngIf="isAppeler15()" class="mb-0"> Suivant votre ville et votre état de santé, le SAMU pourra vous orienter vers un dispensaire de médecine générale.</p>
@@ -56,7 +40,7 @@
     <!-- Cas RAS -->
     <div *ngIf="isRAS()">
       <h5 class="text-center my-4">
-        <strong>Vos symptômes ne semblent <u>pas nécessiter de prise en charge particulière.</u></strong>
+        <strong>Votre état ne semble <u>pas nécessiter de prise en charge particulière.</u></strong>
       </h5>
 
       <div class="alert alert-primary" role="alert">

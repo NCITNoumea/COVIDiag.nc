@@ -67,19 +67,11 @@ export class RecommendationComponent implements OnInit {
     // Valeur par défaut
     this.recommendationResult = RecommendationType.Appeler15;
 
-    //TODO - this.recommendationResult = RecommendationType.AppelerNumeroLocal;
-  }
-
-  public isMedipole(): boolean {
-    return this.recommendationResult === RecommendationType.Medipole;
+    //this.recommendationResult = RecommendationType.RAS;
   }
 
   public isAppeler15(): boolean {
     return this.recommendationResult === RecommendationType.Appeler15;
-  }
-
-  public isAppelerNumeroLocal(): boolean {
-    return this.recommendationResult === RecommendationType.AppelerNumeroLocal;
   }
 
   public isAppelerMedecin(): boolean {
