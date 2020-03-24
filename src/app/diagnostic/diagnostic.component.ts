@@ -135,4 +135,8 @@ export class DiagnosticComponent implements OnInit {
     return question.answerType === AnswerType.PostalCode;
   }
 
+  public showParacetamolOnly(question: Question): boolean {
+    return question.id === 'fievre' || question.id === 'temperature' || question.id === 'toux' || question.id === 'mal_gorge';
+  }
+
 }

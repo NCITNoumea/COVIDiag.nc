@@ -98,13 +98,27 @@
     </section>
 
     <!-- Précédent -->
-    <div class="my-4 text-left">
+    <div class="mt-4 mb-1 text-left">
       <p *ngIf="currentQuestionId > 0" class="btn btn-dark" (click)="backToPrevious(currentQuestionId)">
         <fa-icon [icon]="['fa', 'arrow-left']"></fa-icon>
         Précédent
       </p>
     </div>
 
+  </div>
+</div>
+
+<div *ngIf="!surveyFinished && showParacetamolOnly(currentQuestion)" class="container">
+  <div class="box-danger">
+    <div class="alert alert-danger" role="alert">
+      <p class="mt-3 mb-0">
+        <fa-icon [icon]="['fa', 'exclamation-triangle']"></fa-icon>
+        <strong> Anti-inflammatoires non stéroïdiens</strong>
+      </p>
+      <p>
+        La prise d'anti-inflammatoires (ibuprofène, cortisone ...) pourrait être un facteur d'aggravation de l’infection. En cas de fièvre, prenez du paracétamol. Cette remarque concerte les traitements par gélules ou comprimés et ne concerne pas les formes inhalées. Si vous êtes déjà sous traitement, n'arrêtez pas ce traitement, demandez l'avis de votre médecin ou de votre pharmacien.
+      </p>
+    </div>
   </div>
 </div>
 
