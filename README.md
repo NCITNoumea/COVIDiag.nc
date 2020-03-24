@@ -1,7 +1,7 @@
 # COVIDiag.nc
-Application de redirection des malades à partir des symptômes lors de l'épidémie de COVID-19 en Nouvelle-Calédonie
+Application d'orientation des malades en fonction de leurs symptômes lors de l'épidémie de COVID-19 en Nouvelle-Calédonie
 
-Projet généré via [Angular CLI](https://github.com/angular/angular-cli) version 7.1.2.
+Projet généré via [Angular CLI](https://github.com/angular/angular-cli) version 8.3.8.
 
 # Règles métier
 
