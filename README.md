@@ -47,6 +47,8 @@ On part du postulat de départ que les réponses aux différentes questions sont
 - Signes de gravité
 - Facteurs de risque
 
+**Pour déterminer la recommandation, les règles suivantes s'appliquent :**
+
 ![image](https://drive.google.com/uc?export=view&id=1zKRQfeqKCsJE9WzaRlaRXjj5um6kwc25)
 
 > NB : Ce diagramme est en cours d'élaboration et n'a pas été à ce jour validé par les services sanitaires de Nouvelle-Calédonie. Son utilisation n'est donc pour le moment pas applicable.
