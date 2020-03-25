@@ -10,6 +10,7 @@ Projet généré via [Angular CLI](https://github.com/angular/angular-cli) versi
   - [Diagramme de décision](#diagramme-de-décision)
     - [Mode par points](#mode-par-points)
     - [Mode par catégorie](#mode-par-catégorie)
+  - [Annexes](#annexes)
 - [Développement](#développement)
 
 # Règles métier
@@ -26,45 +27,42 @@ Eviter un engorgement du 15 et du Médipôle pour des cas non prioritaires/état
 
 2 modes de décision sont actuellement possibles : le mode **par points** et le mode **par catégorie**.
 
-> NB : Le mode actuel de l'application est le mode appliqué par le gouvernent de Nouvelle-Calédonie à savoir le mode **par points**
+> NB : Le mode actuel de l'application est le mode **par points** (appliqué actuellement par le gouvernent de Nouvelle-Calédonie)
 
 ### Mode par points
 
 En fonction de la gravité, chaque question a un nombre de points qui lui est attribué. Si la réponse à la question est **Oui**, les points sont additionnés. 
 
-**Au final, les règles suivantes s'appliquent :**
+**Pour déterminer la recommandation, les règles suivantes s'appliquent :**
 
-- Si le total de points est >= 6
-  - Si au moins un "Oui" a été donné sur un signe de gravité (question qui vaut au moins 5 points) : **Appeler le 15**
-  - Sinon : **Faire un test de dépistage**
-- Sinon
-  - Si le total de points est <= 2 : **Pas de prise en charge particulière**
-  - Sinon : **Contacter le médecin traitant**
+![alt text](https://drive.google.com/uc?export=view&id=1jexPr0VZrrPvMOosFILsSn9XM04JSlnY "Mode par points - Arbre de décision")
 
-> NB : Les documents du Gouvernement de Nouvelle-Calédonie ci-dessous ont été utilisés pour déterminer ces décisions. 
-
-#### Points par questions
-![alt text](doc/NC-PointsQuestions.png "Points attribués à chaque question")
-
-#### Diagramme de décision
-
-> NB : L'application s'arrête au bloc de décision "PAS DE CRITERE(S) DE GRAVITE (2B)", la suite étant gérée par téléphone.
-
-![alt text](doc/NC-DiagrammeDecision.png "Diagramme de décision par points")
+> NB : Les documents du Gouvernement de Nouvelle-Calédonie en [annexes](#formulaire-gouv-nc) ont été utilisés pour déterminer ces décisions. 
 
 ### Mode par catégorie 
 
 On part du postulat de départ que les réponses aux différentes questions sont classées dans 3 catégories différentes :
 
+- Signes cliniques
 - Signes de gravité
 - Facteurs de risque
-- Symptômes classiques
 
-Si le patient réponds à au moins 1 des questions présente dans une catégorie, le cas "Oui" du diagramme ci-dessous s'applique :
-
-![alt text](doc/Custom-DecisionTree.png "Arbre de décision")
+![alt text](https://drive.google.com/uc?export=view&id=1zKRQfeqKCsJE9WzaRlaRXjj5um6kwc25 "Mode par catégories - Arbre de décision")
 
 > NB : Ce diagramme est en cours d'élaboration et n'a pas été à ce jour validé par les services sanitaires de Nouvelle-Calédonie. Son utilisation n'est donc pour le moment pas applicable.
+
+## Annexes
+### Formulaire Gouv NC
+#### Points par questions
+![alt text](doc/NC-PointsQuestions.png "Points attribués à chaque question")
+
+#### Diagramme de décision
+> NB : L'application s'arrête actuellement au bloc de décision "PAS DE CRITERE(S) DE GRAVITE (2B)", la suite étant gérée par téléphone.
+
+![alt text](doc/NC-DiagrammeDecision.png "Diagramme de décision par points")
+
+#### Catégories de questions
+![alt text](doc/NC-CategoriesQuestions.png "Catégories des questions")
 
 # Développement
 
