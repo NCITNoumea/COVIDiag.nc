@@ -134,7 +134,7 @@ export class RecommendationComponent implements OnInit {
     var surveyResultsObject = this.surveyResults.reduce(function(acc, cur, i) {
       acc[i] = {
           question: cur.question.id,
-          answer: cur.answer !== null ? cur.answer : '',
+          answer: cur.answer != undefined ? cur.answer : '',
           category: cur.question.categoryId
         };
       return acc;
@@ -153,9 +153,11 @@ export class RecommendationComponent implements OnInit {
 
     console.log(surveyData);
 
-    db.collection("survey").add(surveyData)
-      .then(function(docRef) {
-        console.log("Document written with ID: ", docRef.id);
+    let id = new Date().toISOString();
+
+    db.collection("survey").doc(id).set(surveyData)
+      .then(function() {
+        console.log("Document successfully written!");
       })
       .catch(function(error) {
         console.error("Error adding document: ", error);
