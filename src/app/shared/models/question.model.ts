@@ -109,7 +109,7 @@ export const questionnaire = {
       'difficulte_respiratoire',
       'signe_gravite',
       5,
-      'Ces dernieres 24h, avez-vous noté une gène respiratoire inhabituelle ou une augmentation de votre gène respiratoire habituelle ?',
+      'Ces dernieres 24h, avez-vous noté une gène respiratoire inhabituelle ?',
       AnswerType.Binary,
       [ { label: 'Oui' }, { label: 'Non' } ],
       'gout_odorat'

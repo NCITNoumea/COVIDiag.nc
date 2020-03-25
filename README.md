@@ -7,7 +7,7 @@ Projet généré via [Angular CLI](https://github.com/angular/angular-cli) versi
 - [Règles métier](#règles-métier)
   - [Idée de départ](#idée-de-départ)
   - [Objectif](#objectif)
-  - [Diagramme de décision](#diagramme-de-decision)
+  - [Diagramme de décision](#diagramme-de-décision)
     - [Mode par points](#mode-par-points)
     - [Mode par catégorie](#mode-par-catégorie)
 - [Développement](#développement)
