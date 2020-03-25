@@ -35,7 +35,7 @@ En fonction de la gravité, chaque question a un nombre de points qui lui est at
 
 **Pour déterminer la recommandation, les règles suivantes s'appliquent :**
 
-![alt text](https://drive.google.com/uc?export=view&id=1jexPr0VZrrPvMOosFILsSn9XM04JSlnY "Mode par points - Arbre de décision")
+![image](https://drive.google.com/uc?export=view&id=1jexPr0VZrrPvMOosFILsSn9XM04JSlnY)
 
 > NB : Les documents du Gouvernement de Nouvelle-Calédonie en [annexes](#formulaire-gouv-nc) ont été utilisés pour déterminer ces décisions. 
 
@@ -47,7 +47,7 @@ On part du postulat de départ que les réponses aux différentes questions sont
 - Signes de gravité
 - Facteurs de risque
 
-![alt text](https://drive.google.com/uc?export=view&id=1zKRQfeqKCsJE9WzaRlaRXjj5um6kwc25 "Mode par catégories - Arbre de décision")
+![image](https://drive.google.com/uc?export=view&id=1zKRQfeqKCsJE9WzaRlaRXjj5um6kwc25)
 
 > NB : Ce diagramme est en cours d'élaboration et n'a pas été à ce jour validé par les services sanitaires de Nouvelle-Calédonie. Son utilisation n'est donc pour le moment pas applicable.
 
