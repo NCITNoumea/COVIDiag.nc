@@ -3,6 +3,15 @@ Application d'orientation des malades en fonction de leurs symptômes lors de l'
 
 Projet généré via [Angular CLI](https://github.com/angular/angular-cli) version 8.3.8.
 
+# Sommaire
+- [Règles métier](#règles-métier)
+  - [Idée de départ](#idée-de-départ)
+  - [Objectif](#objectif)
+  - [Diagramme de décision](#diagramme-de-decision)
+    - [Mode par points](#mode-par-points)
+    - [Mode par catégorie](#mode-par-catégorie)
+- [Développement](#développement)
+
 # Règles métier
 
 ## Idée de départ 
@@ -21,16 +30,16 @@ Eviter un engorgement du 15 et du Médipôle pour des cas non prioritaires/état
 
 ### Mode par points
 
-En fonction de la gravité, chaque question a un nombre de points qui lui est attribué. Si la réponse à cette question est **Oui**, les points sont additionnés. 
+En fonction de la gravité, chaque question a un nombre de points qui lui est attribué. Si la réponse à la question est **Oui**, les points sont additionnés. 
 
 **Au final, les règles suivantes s'appliquent :**
 
-- Si le total est >= 6
+- Si le total de points est >= 6
   - Si au moins un "Oui" a été donné sur un signe de gravité (question qui vaut au moins 5 points) : **Appeler le 15**
   - Sinon : **Faire un test de dépistage**
 - Sinon
-  - Si le total est <= 2 : **Pas de prise en charge particulière**
-  - Sinon : **Contacter votre médecin**
+  - Si le total de points est <= 2 : **Pas de prise en charge particulière**
+  - Sinon : **Contacter le médecin traitant**
 
 > NB : Les documents du Gouvernement de Nouvelle-Calédonie ci-dessous ont été utilisés pour déterminer ces décisions. 
 
@@ -55,7 +64,7 @@ Si le patient réponds à au moins 1 des questions présente dans une catégorie
 
 ![alt text](doc/Custom-DecisionTree.png "Arbre de décision")
 
-> NB : Ce diagramme est en cours d'élaboration/validation par le corps médical. Il sera régulièrement mis à jour.
+> NB : Ce diagramme est en cours d'élaboration et n'a pas été à ce jour validé par les services sanitaires de Nouvelle-Calédonie. Son utilisation n'est donc pour le moment pas applicable.
 
 # Développement
 
