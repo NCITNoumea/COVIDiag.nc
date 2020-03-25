@@ -1,7 +1,7 @@
 <div *ngIf="!surveyFinished" class="container px-3 h-100 py-lg-5 my-lg-5">
   <div class="container-fluid">
     <section class="jumbotron text-center">
-      <p class="survey-position">Question {{currentQuestionId+1}} sur {{surveyLength}}</p>
+      <p class="survey-position">Question {{currentQuestionNumber}} sur {{surveyLength}}</p>
       <h4>{{currentQuestion.question}}</h4>
 
       <!-- Si INPUT il y a -->
@@ -99,7 +99,7 @@
 
     <!-- Précédent -->
     <div class="mt-4 mb-1 text-left">
-      <p *ngIf="currentQuestionId > 0" class="btn btn-dark" (click)="backToPrevious(currentQuestionId)">
+      <p *ngIf="currentQuestionNumber > 1" class="btn btn-dark" (click)="backToPrevious(currentQuestionNumber)">
         <fa-icon [icon]="['fa', 'arrow-left']"></fa-icon>
         Précédent
       </p>
@@ -123,6 +123,11 @@
 </div>
 
 <div *ngIf="surveyFinished">
-  <app-recommendation [surveyResults]="surveyResults"></app-recommendation>
+  <app-recommendation [surveyResults]="surveyResults"
+                      [surveyScore]="surveyScore"
+                      [nbGravitySigns]="nbGravitySigns"
+                      [nbRiskFactors]="nbRiskFactors"
+                      [nbClinicSigns]="nbClinicSigns">
+  </app-recommendation>
 </div>
 

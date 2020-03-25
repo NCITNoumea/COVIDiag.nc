@@ -1,6 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
-import { ISurvey, Question, questionnaire, questionnaire_length } from '../shared/models/question.model';
+import { ISurvey, Question, questionnaire, questionnaire_length, IIndexedQuestion } from '../shared/models/question.model';
 import { Answer, AnswerType, AnsweredQuestion } from '../shared/models/answer.model';
 
 
@@ -12,9 +12,14 @@ import { Answer, AnswerType, AnsweredQuestion } from '../shared/models/answer.mo
 export class DiagnosticComponent implements OnInit {
   public surveyResults: ISurvey;
   public currentQuestion: Question;
-  public currentQuestionId: number;
+  public currentQuestionNumber: number;
   public surveyLength: number;
   public surveyFinished: boolean;
+
+  public surveyScore: number;
+  public nbGravitySigns: number;
+  public nbRiskFactors: number;
+  public nbClinicSigns: number;
 
   public inputTemperature: number;
   public inputAge: number;
@@ -33,7 +38,13 @@ export class DiagnosticComponent implements OnInit {
   public reset() {
     this.surveyResults = [];
     this.surveyFinished = false;
-    this.currentQuestionId = 0;
+
+    this.surveyScore = 0;
+    this.nbGravitySigns = 0;
+    this.nbRiskFactors = 0;
+    this.nbClinicSigns = 0;
+
+    this.currentQuestionNumber = 1;
     this.inputTemperature = 37.5;
     this.currentQuestion = Object.assign({}, questionnaire.fievre);
     this.surveyLength = questionnaire_length;
@@ -43,15 +54,16 @@ export class DiagnosticComponent implements OnInit {
     const oldQuestion = this.currentQuestion;
     this.pushNode(this.currentQuestion, answer);
 
-    this.currentQuestionId++;
+    this.currentQuestionNumber++;
 
     let nextQuestionId;
     if (this.currentQuestion.nextQuestionId == null) {
-      nextQuestionId = null;
       // Fin du questionnaire
+      nextQuestionId = null;
       console.log(this.surveyResults);
       this.surveyFinished = true;
     } else {
+      // Suite du questionnaire
       nextQuestionId = oldQuestion.nextQuestionId;
       this.currentQuestion = Object.assign({}, questionnaire[oldQuestion.nextQuestionId]);
     }
@@ -69,6 +81,7 @@ export class DiagnosticComponent implements OnInit {
   private pushNode(question: Question, answer: Answer): void {
     let answerValue: string = "";
 
+    // Récupération de la réponse
     if (this.isAnswerOnClick(question)) {
       answerValue = answer.label
     } else {
@@ -100,14 +113,66 @@ export class DiagnosticComponent implements OnInit {
       question: this.currentQuestion,
       answer: answerValue
     });
+
+    this.processQuestionToRecommendationResults(question, answer);
   }
 
-  public backToPrevious(currentQuestionIndex: number) {
-    let questionIndex = currentQuestionIndex-1;
-    const newQuestion = this.surveyResults.find(question => question.index === questionIndex);
+  private processQuestionToRecommendationResults(question: Question, answer: Answer): void {
+    // Calcul des points et catégorisation
+    if (answer.label.toLocaleLowerCase() == 'oui') {
+      this.surveyScore += question.points;
+
+      if (question.categoryId == 'signe_gravite' || question.categoryId == 'critere_isolement_sanitaire') {
+        this.nbGravitySigns++;
+      }
+      if (question.categoryId == 'facteurs_risque') {
+        this.nbRiskFactors++;
+      }
+      if (question.categoryId == 'signe_clinique') {
+        this.nbClinicSigns++;
+      }
+
+      console.log("Score : " + this.surveyScore
+                  + " / Signes gravité : " + this.nbGravitySigns
+                  + " / Facteurs de risque : " + this.nbRiskFactors
+                  + " / Signes cliniques : " + this.nbClinicSigns
+      );
+    }
+  }
+
+  private unprocessIndexedQuestionToRecommendationResults(indexedQuestion: IIndexedQuestion): void {
+    // Calcul des points et catégorisation
+    if (indexedQuestion.answer.toLocaleLowerCase() == 'oui') {
+      let question: Question = indexedQuestion.question;
+
+      this.surveyScore -= question.points;
+
+      if (question.categoryId == 'signe_gravite' || question.categoryId == 'critere_isolement_sanitaire') {
+        this.nbGravitySigns--;
+      }
+      if (question.categoryId == 'facteurs_risque') {
+        this.nbRiskFactors--;
+      }
+      if (question.categoryId == 'signe_clinique') {
+        this.nbClinicSigns--;
+      }
+
+      console.log("Score : " + this.surveyScore
+                  + " / Signes gravité : " + this.nbGravitySigns
+                  + " / Facteurs de risque : " + this.nbRiskFactors
+                  + " / Signes cliniques : " + this.nbClinicSigns
+      );
+    }
+  }
+
+  public backToPrevious(questionNumber: number) {
+    let questionIndex = questionNumber-2;
+    const previousIndexedQuestion = this.surveyResults.find(question => question.index === questionIndex);
+    this.unprocessIndexedQuestionToRecommendationResults(previousIndexedQuestion);
+
     this.surveyResults.length = questionIndex;
-    this.currentQuestion = Object.assign({}, questionnaire[newQuestion.question.id]);
-    this.currentQuestionId--;
+    this.currentQuestion = Object.assign({}, questionnaire[previousIndexedQuestion.question.id]);
+    this.currentQuestionNumber--;
     this.surveyFinished = false;
   }
 

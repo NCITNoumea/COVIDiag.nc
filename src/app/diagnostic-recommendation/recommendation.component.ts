@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ISurvey, IIndexedQuestion } from 'src/app/shared/models/question.model';
-import { RecommendationType } from 'src/app/shared/models/recommendation.model';
+import { RecommendationType, SurveyRecommendationProcessMode } from 'src/app/shared/models/recommendation.model';
 
 @Component({
   selector: 'app-recommendation',
@@ -10,13 +10,21 @@ import { RecommendationType } from 'src/app/shared/models/recommendation.model';
 export class RecommendationComponent implements OnInit {
 
   @Input() surveyResults: ISurvey;
+  @Input() surveyScore: number;
+  @Input() nbGravitySigns: number;
+  @Input() nbRiskFactors: number;
+  @Input() nbClinicSigns: number;
 
   public recommendationResult: RecommendationType;
   public localNumber: string;
+  public processMode: SurveyRecommendationProcessMode;
 
   constructor() { }
 
   ngOnInit() {
+    // On défini ici le mode de calcul de la recommandation : basée sur le score ou sur les catégories de questions
+    this.processMode = SurveyRecommendationProcessMode.Score;
+
     this.processLocalNumber();
     this.processSurveyRecommendation();
   }
@@ -27,14 +35,10 @@ export class RecommendationComponent implements OnInit {
     // Valeur par défaut
     this.localNumber = "05 02 02";
 
-    // Code postal en dernier
+    // Code postal : dernière question du questionnaire
     let postalCodeAnswer: IIndexedQuestion = this.surveyResults[surveyLength-1];
     let strPostalCode: string = postalCodeAnswer.answer;
     let postalCode: number = +strPostalCode;
-
-    console.log(postalCodeAnswer);
-    console.log(strPostalCode);
-    console.log(postalCode);
 
     if (postalCode != null) {
       if (postalCode < 98809 || (postalCode > 98840 && postalCode < 98850) || (postalCode > 98850 && postalCode < 98859) || (postalCode > 98860 && postalCode < 98870) || (postalCode > 98890)) {
@@ -60,18 +64,72 @@ export class RecommendationComponent implements OnInit {
       }
     }
 
-    console.log(this.localNumber);
+    console.log("Code postal " + postalCode + " => Numéro local " + this.localNumber);
   }
 
   private processSurveyRecommendation(){
     // Valeur par défaut
     this.recommendationResult = RecommendationType.Appeler15;
 
-    //this.recommendationResult = RecommendationType.RAS;
+    console.log("Score : " + this.surveyScore
+                + " / Signes gravité : " + this.nbGravitySigns
+                + " / Facteurs de risque : " + this.nbRiskFactors
+                + " / Signes cliniques : " + this.nbClinicSigns
+    );
+
+    switch (this.processMode) {
+      case SurveyRecommendationProcessMode.Score:
+        if (this.surveyScore >= 6) {
+          if (this.nbGravitySigns > 0) {
+            this.recommendationResult = RecommendationType.Appeler15;
+          } else {
+            this.recommendationResult = RecommendationType.TestPrelevement;
+          }
+        } else {
+          if (this.surveyScore <= 2) {
+            this.recommendationResult = RecommendationType.RAS;
+          } else {
+            this.recommendationResult = RecommendationType.AppelerMedecin;
+          }
+        }
+        break;
+
+      case SurveyRecommendationProcessMode.Categories:
+        if (this.nbClinicSigns > 0) {
+          if (this.nbRiskFactors > 0) {
+            if (this.nbGravitySigns > 0) {
+              this.recommendationResult = RecommendationType.Appeler15;
+            } else {
+              // Dans un premier temps le 15, si le service devient saturé il faudra passer sur le médecin/centre de proximité (TestPrelevement / AppelerMedecin)
+              this.recommendationResult = RecommendationType.Appeler15;
+            }
+          } else {
+            if (this.nbGravitySigns > 0) {
+              this.recommendationResult = RecommendationType.Appeler15;
+            } else {
+              this.recommendationResult = RecommendationType.AppelerMedecin;
+            }
+          }
+        } else {
+          if (this.nbGravitySigns > 1) {
+            this.recommendationResult = RecommendationType.Appeler15;
+          } else {
+            this.recommendationResult = RecommendationType.RAS;
+          }
+        }
+        break;
+    }
+
+    console.log("Recommandation calculée par " + SurveyRecommendationProcessMode[this.processMode]
+                + " : " + RecommendationType[this.recommendationResult]);
   }
 
   public isAppeler15(): boolean {
     return this.recommendationResult === RecommendationType.Appeler15;
+  }
+
+  public isTestPrelevement(): boolean {
+    return this.recommendationResult === RecommendationType.TestPrelevement;
   }
 
   public isAppelerMedecin(): boolean {
