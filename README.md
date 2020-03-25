@@ -35,7 +35,7 @@ En fonction de la gravité, chaque question a un nombre de points qui lui est at
 
 **Pour déterminer la recommandation, les règles suivantes s'appliquent :**
 
-![image](https://drive.google.com/uc?export=view&id=1jexPr0VZrrPvMOosFILsSn9XM04JSlnY)
+![image](doc/COVIDiag.nc-ModePoints-ArbreDecision.png)
 
 > NB : Les documents du Gouvernement de Nouvelle-Calédonie en [annexes](#formulaire-gouv-nc) ont été utilisés pour déterminer ces décisions. 
 
@@ -49,7 +49,7 @@ On part du postulat de départ que les réponses aux différentes questions sont
 
 **Pour déterminer la recommandation, les règles suivantes s'appliquent :**
 
-![image](https://drive.google.com/uc?export=view&id=1zKRQfeqKCsJE9WzaRlaRXjj5um6kwc25)
+![image](doc/COVIDiag.nc-ModeCategories-ArbreDecision.png)
 
 > NB : Ce diagramme est en cours d'élaboration et n'a pas été à ce jour validé par les services sanitaires de Nouvelle-Calédonie. Son utilisation n'est donc pour le moment pas applicable.
 
