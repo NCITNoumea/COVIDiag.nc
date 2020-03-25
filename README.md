@@ -13,7 +13,26 @@ Mettre en place une appli web pour diagnostiquer les signes de COVID-19 (ou non)
 
 Eviter un engorgement du 15 et du Médipôle pour des cas non prioritaires/états grippaux classiques
 
-## Diagrame de décision
+## Diagramme de décision
+
+2 modes de décision sont actuellement possibles : le mode **par score** et le mode **par catégorie**.
+
+### Mode par score
+
+En fonction de la gravité, chaque question a un nombre de points qui lui est attribué. Si la réponse à cette question est **Oui**, les points sont additionnés. 
+
+**A la fin, le diagramme ci-dessous s'applique.**
+
+#### Points / Questions
+![alt text](doc/NC-PointsQuestions.png "Points attribués à chaque question")
+
+#### Diagramme de décision
+![alt text](doc/NC-DiagrammeDecision.png "Diagramme de décision par points")
+
+#### Catégories de questions
+![alt text](doc/NC-CategoriesQuestions.png "Diagramme de décision par points")
+
+### Mode par catégorie 
 
 On part du postulat de départ que les réponses aux différentes questions sont classées dans 3 catégories différentes :
 
@@ -23,11 +42,9 @@ On part du postulat de départ que les réponses aux différentes questions sont
 
 Si le patient réponds à au moins 1 des questions présente dans une catégorie, le cas "Oui" du diagramme ci-dessous s'applique :
 
-![alt text](doc/COVID19NC-DecisionTree.png "COVID-19 - NC - Arbre de décision")
+![alt text](doc/Custom-DecisionTree.png "Arbre de décision")
 
 NB : Ce diagramme est en cours d'élaboration/validation par le corp médical. Il sera régulièrement mis à jour.
-
-
 
 # Développement
 
