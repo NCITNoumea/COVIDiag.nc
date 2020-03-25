@@ -1,4 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
+import * as firebase from "firebase";
+
 import { ISurvey, IIndexedQuestion } from 'src/app/shared/models/question.model';
 import { RecommendationType, SurveyRecommendationProcessMode } from 'src/app/shared/models/recommendation.model';
 
@@ -27,6 +29,7 @@ export class RecommendationComponent implements OnInit {
 
     this.processLocalNumber();
     this.processSurveyRecommendation();
+    this.storeResultsToDatastore();
   }
 
   private processLocalNumber(){
@@ -122,6 +125,41 @@ export class RecommendationComponent implements OnInit {
 
     console.log("Recommandation calculée par " + SurveyRecommendationProcessMode[this.processMode]
                 + " : " + RecommendationType[this.recommendationResult]);
+  }
+
+  private storeResultsToDatastore() {
+    var db = firebase.firestore();
+
+    // Conversion de la liste de réponses en objet
+    var surveyResultsObject = this.surveyResults.reduce(function(acc, cur, i) {
+      acc[i] = {
+          question: cur.question.id,
+          answer: cur.answer,
+          category: cur.question.categoryId
+        };
+      return acc;
+    }, {});
+
+    let surveyData = {
+      surveyResults: surveyResultsObject,
+      surveyScore: this.surveyScore,
+      nbGravitySigns: this.nbGravitySigns,
+      nbRiskFactors: this.nbRiskFactors,
+      nbClinicSigns: this.nbClinicSigns,
+      recommendationResult: RecommendationType[this.recommendationResult],
+      localNumber: this.localNumber,
+      processMode: SurveyRecommendationProcessMode[this.processMode]
+    }
+
+    console.log(surveyData);
+
+    db.collection("survey").add(surveyData)
+      .then(function(docRef) {
+        console.log("Document written with ID: ", docRef.id);
+      })
+      .catch(function(error) {
+        console.error("Error adding document: ", error);
+      });
   }
 
   public isAppeler15(): boolean {
