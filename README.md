@@ -15,22 +15,33 @@ Eviter un engorgement du 15 et du Médipôle pour des cas non prioritaires/état
 
 ## Diagramme de décision
 
-2 modes de décision sont actuellement possibles : le mode **par score** et le mode **par catégorie**.
+2 modes de décision sont actuellement possibles : le mode **par points** et le mode **par catégorie**.
 
-### Mode par score
+> NB : Le mode actuel de l'application est le mode appliqué par le gouvernent de Nouvelle-Calédonie à savoir le mode **par points**
+
+### Mode par points
 
 En fonction de la gravité, chaque question a un nombre de points qui lui est attribué. Si la réponse à cette question est **Oui**, les points sont additionnés. 
 
-**A la fin, le diagramme ci-dessous s'applique.**
+**Au final, les règles suivantes s'appliquent :**
 
-#### Points / Questions
+- Si le total est >= 6
+  - Si au moins un "Oui" a été donné sur un signe de gravité (question qui vaut au moins 5 points) : **Appeler le 15**
+  - Sinon : **Faire un test de dépistage**
+- Sinon
+  - Si le total est <= 2 : **Pas de prise en charge particulière**
+  - Sinon : **Contacter votre médecin**
+
+> NB : Les documents du Gouvernement de Nouvelle-Calédonie ci-dessous ont été utilisés pour déterminer ces décisions. 
+
+#### Points par questions
 ![alt text](doc/NC-PointsQuestions.png "Points attribués à chaque question")
 
 #### Diagramme de décision
-![alt text](doc/NC-DiagrammeDecision.png "Diagramme de décision par points")
 
-#### Catégories de questions
-![alt text](doc/NC-CategoriesQuestions.png "Diagramme de décision par points")
+> NB : L'application s'arrête au bloc de décision "PAS DE CRITERE(S) DE GRAVITE (2B)", la suite étant gérée par téléphone.
+
+![alt text](doc/NC-DiagrammeDecision.png "Diagramme de décision par points")
 
 ### Mode par catégorie 
 
@@ -44,7 +55,7 @@ Si le patient réponds à au moins 1 des questions présente dans une catégorie
 
 ![alt text](doc/Custom-DecisionTree.png "Arbre de décision")
 
-NB : Ce diagramme est en cours d'élaboration/validation par le corp médical. Il sera régulièrement mis à jour.
+> NB : Ce diagramme est en cours d'élaboration/validation par le corps médical. Il sera régulièrement mis à jour.
 
 # Développement
 
@@ -54,7 +65,7 @@ NB : Ce diagramme est en cours d'élaboration/validation par le corp médical. I
 2. Lancer `npm start` pour démarrer l'application
 3. Naviguer vers `http://localhost:4200/`
 
-NB : L'application se rafraichira ensuite automatiquement à chaque modification d'une des sources (hors config)
+> NB : L'application se rafraichira ensuite automatiquement à chaque modification d'une des sources (hors config)
 
 ## Build
 
@@ -70,16 +81,16 @@ Lancer `ng build --prod` si l'objectif est de déployer sur un serveur distant.
 2. Lancer `firebase deploy`
 3. L'application déployée est ensuite accessible sur [https://covidiagnc.web.app/](https://covidiagnc.web.app/)
 
-NB : La configuration est dans le fichier [firebase.json](firebase.json).
+> NB : La configuration est dans le fichier [firebase.json](firebase.json).
 
 ## Tests unitaires
 
-NB : N/A pour l'instant
+> NB : Non applicable pour l'instant
 
 Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
-## Running end-to-end tests
+## Tests end-to-end
 
-NB : N/A pour l'instant
+> NB : Non applicable pour l'instant
 
 Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
