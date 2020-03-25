@@ -134,7 +134,7 @@ export class RecommendationComponent implements OnInit {
     var surveyResultsObject = this.surveyResults.reduce(function(acc, cur, i) {
       acc[i] = {
           question: cur.question.id,
-          answer: cur.answer,
+          answer: cur.answer !== null ? cur.answer : '',
           category: cur.question.categoryId
         };
       return acc;
