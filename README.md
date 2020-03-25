@@ -4,7 +4,7 @@ Application d'orientation des malades en fonction de leurs symptômes lors de l'
 Projet généré via [Angular CLI](https://github.com/angular/angular-cli) version 8.3.8.
 
 # Sommaire
-- [Règles métier](#règles-métier)
+- [Règles de gestion](#règles-de-gestion)
   - [Idée de départ](#idée-de-départ)
   - [Objectif](#objectif)
   - [Diagramme de décision](#diagramme-de-décision)
@@ -13,7 +13,7 @@ Projet généré via [Angular CLI](https://github.com/angular/angular-cli) versi
   - [Annexes](#annexes)
 - [Développement](#développement)
 
-# Règles métier
+# Règles de gestion
 
 ## Idée de départ 
 
