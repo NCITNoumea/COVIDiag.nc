@@ -1,6 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
-import { ISurvey, Question, questionnaire, questionnaire_length, IIndexedQuestion } from '../shared/models/question.model';
+import { Question, questionnaire, IIndexedQuestion, IMapSurvey, QuestionId } from '../shared/models/question.model';
 import { Answer, AnswerType, AnsweredQuestion } from '../shared/models/answer.model';
 
 
@@ -10,7 +10,7 @@ import { Answer, AnswerType, AnsweredQuestion } from '../shared/models/answer.mo
   styleUrls: ['./diagnostic.component.scss']
 })
 export class DiagnosticComponent implements OnInit {
-  public surveyResults: ISurvey;
+  public surveyResults: IMapSurvey;
   public currentQuestion: Question;
   public currentQuestionNumber: number;
   public surveyLength: number;
@@ -37,7 +37,7 @@ export class DiagnosticComponent implements OnInit {
   }
 
   public reset() {
-    this.surveyResults = [];
+    this.surveyResults = new Map();
     this.surveyFinished = false;
 
     this.surveyScore = 0;
@@ -66,7 +66,6 @@ export class DiagnosticComponent implements OnInit {
     if (this.currentQuestion.nextQuestionId == null) {
       // Fin du questionnaire
       nextQuestionId = null;
-      console.log(this.surveyResults);
       this.surveyFinished = true;
     } else {
       // Suite du questionnaire
@@ -75,7 +74,8 @@ export class DiagnosticComponent implements OnInit {
     }
 
     // Tests locaux uniquement - Pour n'afficher qu'une seule question
-    // this.surveyFinished = true;
+    //this.surveyFinished = true;
+
     const answeredQuestion = new AnsweredQuestion(
       oldQuestion.id,
       nextQuestionId,
@@ -121,11 +121,14 @@ export class DiagnosticComponent implements OnInit {
       }
     }
 
-    this.surveyResults.push({
-      index: this.surveyResults.length,
-      question: this.currentQuestion,
-      answer: answerValue
-    });
+    this.surveyResults.set(
+      this.currentQuestion.id,
+      {
+        index: this.surveyResults.size,
+        question: this.currentQuestion,
+        answer: answerValue
+      }
+    );
 
     this.processQuestionToRecommendationResults(question, answer);
   }
@@ -178,13 +181,15 @@ export class DiagnosticComponent implements OnInit {
     }
   }
 
-  public backToPrevious(questionNumber: number) {
-    let questionIndex = questionNumber-2;
-    const previousIndexedQuestion = this.surveyResults.find(question => question.index === questionIndex);
-    this.unprocessIndexedQuestionToRecommendationResults(previousIndexedQuestion);
+  public backToPrevious(question: Question) {
+    let lastQuestionId: QuestionId = Array.from(this.surveyResults)[this.surveyResults.size-1][0];
+    let lastIndexedQuestion: IIndexedQuestion = Array.from(this.surveyResults)[this.surveyResults.size-1][1];
 
-    this.surveyResults.length = questionIndex;
-    this.currentQuestion = Object.assign({}, questionnaire[previousIndexedQuestion.question.id]);
+    this.unprocessIndexedQuestionToRecommendationResults(lastIndexedQuestion);
+
+    this.currentQuestion = Object.assign({}, questionnaire[lastIndexedQuestion.question.id]);
+    this.surveyResults.delete(lastQuestionId);
+
     this.currentQuestionNumber--;
     this.surveyFinished = false;
   }

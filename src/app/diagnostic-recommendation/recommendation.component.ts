@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import * as firebase from "firebase";
 
-import { ISurvey, IIndexedQuestion } from 'src/app/shared/models/question.model';
+import { IIndexedQuestion, IMapSurvey } from 'src/app/shared/models/question.model';
 import { RecommendationType, SurveyRecommendationProcessMode } from 'src/app/shared/models/recommendation.model';
 
 @Component({
@@ -11,7 +11,7 @@ import { RecommendationType, SurveyRecommendationProcessMode } from 'src/app/sha
 })
 export class RecommendationComponent implements OnInit {
 
-  @Input() surveyResults: ISurvey;
+  @Input() surveyResults: IMapSurvey;
   @Input() surveyScore: number;
   @Input() nbGravitySigns: number;
   @Input() nbRiskFactors: number;
@@ -24,6 +24,8 @@ export class RecommendationComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    console.log(this.surveyResults);
+
     // On défini ici le mode de calcul de la recommandation : basée sur le score ou sur les catégories de questions
     this.processMode = SurveyRecommendationProcessMode.Score;
 
@@ -33,41 +35,40 @@ export class RecommendationComponent implements OnInit {
   }
 
   private processLocalNumber(){
-    const surveyLength = this.surveyResults.length;
-
     // Valeur par défaut
     this.localNumber = "05 02 02";
 
-    // Code postal : dernière question du questionnaire
-    let postalCodeAnswer: IIndexedQuestion = this.surveyResults[surveyLength-1];
-    let strPostalCode: string = postalCodeAnswer.answer;
-    let postalCode: number = +strPostalCode;
+    let postalCodeAnswer: IIndexedQuestion = this.surveyResults.get('code_postal');
+    if (postalCodeAnswer != undefined) {
+      let strPostalCode: string = postalCodeAnswer.answer;
+      let postalCode: number = +strPostalCode;
 
-    if (postalCode != null) {
-      if (postalCode < 98809 || (postalCode > 98840 && postalCode < 98850) || (postalCode > 98850 && postalCode < 98859) || (postalCode > 98860 && postalCode < 98870) || (postalCode > 98890)) {
-        // Nouméa
-        this.localNumber = "05 02 02";
-      } else {
-        switch (postalCode) {
-          case 98809:
-          case 98810:
-            // Mont-Dore
-            this.localNumber = "05 02 02";
-            break;
+      if (postalCode != null) {
+        if (postalCode < 98809 || (postalCode > 98840 && postalCode < 98850) || (postalCode > 98850 && postalCode < 98859) || (postalCode > 98860 && postalCode < 98870) || (postalCode > 98890)) {
+          // Nouméa
+          this.localNumber = "05 02 02";
+        } else {
+          switch (postalCode) {
+            case 98809:
+            case 98810:
+              // Mont-Dore
+              this.localNumber = "05 02 02";
+              break;
 
-          case 98830:
-          case 98835:
-          case 98836:
-          case 98837:
-          case 98839:
-            // Dumbea
-            this.localNumber = "05 02 02";
-            break;
+            case 98830:
+            case 98835:
+            case 98836:
+            case 98837:
+            case 98839:
+              // Dumbea
+              this.localNumber = "05 02 02";
+              break;
+          }
         }
       }
-    }
 
-    console.log("Code postal " + postalCode + " => Numéro local " + this.localNumber);
+      console.log("Code postal " + postalCode + " => Numéro local " + this.localNumber);
+    }
   }
 
   private processSurveyRecommendation(){
@@ -130,14 +131,10 @@ export class RecommendationComponent implements OnInit {
   private storeResultsToDatastore() {
     var db = firebase.firestore();
 
-    // Conversion de la liste de réponses en objet
-    var surveyResultsObject = this.surveyResults.reduce(function(acc, cur, i) {
-      acc[i] = {
-          question: cur.question.id,
-          answer: cur.answer != undefined ? cur.answer : '',
-          category: cur.question.categoryId
-        };
-      return acc;
+    // Conversion de la Map de réponses en objet
+    let surveyResultsObject = Array.from(this.surveyResults).reduce((obj, [key, value]) => {
+      obj[key] = value;
+      return obj;
     }, {});
 
     let surveyData = {
@@ -150,8 +147,6 @@ export class RecommendationComponent implements OnInit {
       localNumber: this.localNumber,
       processMode: SurveyRecommendationProcessMode[this.processMode]
     }
-
-    console.log(surveyData);
 
     let id = new Date().toISOString();
 

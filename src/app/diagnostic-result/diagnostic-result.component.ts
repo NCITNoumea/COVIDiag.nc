@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ISurvey } from '../shared/models/question.model';
+import { IMapSurvey } from '../shared/models/question.model';
 
 @Component({
   selector: 'app-diagnostic-result',
@@ -8,7 +8,7 @@ import { ISurvey } from '../shared/models/question.model';
 })
 export class DiagnosticResultComponent implements OnInit {
 
-  @Input() surveyResults: ISurvey;
+  @Input() surveyResults: IMapSurvey;
 
   constructor() { }
 

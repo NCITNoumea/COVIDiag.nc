@@ -1,6 +1,7 @@
 import { AnswerType, Answer } from './answer.model';
 
-export type ISurvey = Array<IIndexedQuestion>;
+export type IMapSurvey = Map<QuestionId, IIndexedQuestion>;
+export type IArraySurvey = Array<IIndexedQuestion>;
 
 export interface IIndexedQuestion {
   index: number;
@@ -203,7 +204,7 @@ export const questionnaire = {
       'Sur les 15 derniers jours, avez vous été en contact avec une personne rentrée de l\'étranger et présentant des  signes grippaux ?',
       AnswerType.Binary,
       [ { label: 'Oui' }, { label: 'Non' } ],
-      'maladie_cardiaque'
+      'age'
     ),
     age: new Question(
       'age',

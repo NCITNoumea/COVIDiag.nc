@@ -116,7 +116,7 @@
 
     <!-- Précédent -->
     <div class="mt-4 mb-1 text-left">
-      <p *ngIf="currentQuestionNumber > 1" class="btn btn-dark" (click)="backToPrevious(currentQuestionNumber)">
+      <p *ngIf="currentQuestionNumber > 1" class="btn btn-dark" (click)="backToPrevious(currentQuestion)">
         <fa-icon [icon]="['fa', 'arrow-left']"></fa-icon>
         Précédent
       </p>
