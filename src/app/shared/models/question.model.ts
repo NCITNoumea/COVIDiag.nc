@@ -47,6 +47,7 @@ export type QuestionId =
   | 'taille'
   | 'poids'
   | 'code_postal'
+  | 'contact'
   | 'mal_gorge'
   | 'diarrhee'
   | 'fatigue_inhabituelle'
@@ -69,7 +70,6 @@ export type QuestionCategoryId =
 /**
  * Questionnaire
  */
-export const questionnaire_length = 20;
 export const questionnaire = {
     fievre: new Question(
       'fievre',
@@ -205,7 +205,7 @@ export const questionnaire = {
       [ { label: 'Oui' }, { label: 'Non' } ],
       'maladie_cardiaque'
     ),
-    /*age: new Question(
+    age: new Question(
       'age',
       'input',
       0,
@@ -231,7 +231,7 @@ export const questionnaire = {
       AnswerType.Poids,
       [ { label: 'Continuer' } ],
       'maladie_cardiaque'
-    ),*/
+    ),
     maladie_cardiaque: new Question(
       'maladie_cardiaque',
       'facteurs_risque',
@@ -311,6 +311,15 @@ export const questionnaire = {
       'Prenez-vous un traitement immunosuppresseur ? C’est un traitement qui diminue vos défenses contre les infections. Voici quelques exemples : corticoïdes, méthotrexate, ciclosporine, tacrolimus, azathioprine, cyclophosphamide (liste non exhaustive).',
       AnswerType.Binary,
       [ { label: 'Oui' }, { label: 'Non' } ],
+      'contact'
+    ),
+    contact: new Question(
+      'contact',
+      'input',
+      0,
+      'Merci de nous transmettre un moyen de contact valide (téléphone ou e-mail). Les services sanitaires pourront ainsi prendre contact avec vous si cela s\'avèrait nécessaire.',
+      AnswerType.Contact,
+      [ { label: 'Continuer' } ],
       'code_postal'
     ),
     code_postal: new Question(

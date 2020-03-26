@@ -12,6 +12,7 @@ export enum AnswerType {
     Poids,
     Taille,
     PostalCode,
+    Contact,
     None
 }
 

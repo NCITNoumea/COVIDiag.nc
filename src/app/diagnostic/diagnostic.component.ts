@@ -26,6 +26,7 @@ export class DiagnosticComponent implements OnInit {
   public inputTaille: number;
   public inputPoids: number;
   public inputPostalCode: string;
+  public inputContact: string;
 
   @Output() answerEvent = new EventEmitter<AnsweredQuestion>();
 
@@ -47,7 +48,12 @@ export class DiagnosticComponent implements OnInit {
     this.currentQuestionNumber = 1;
     this.inputTemperature = 37.5;
     this.currentQuestion = Object.assign({}, questionnaire.fievre);
-    this.surveyLength = questionnaire_length;
+
+    var questionnaireArray = Object.keys(questionnaire).map(function(questionId){
+        let question = questionnaire[questionId];
+        return question;
+    });
+    this.surveyLength = questionnaireArray.length;
   }
 
   onClick(answer: Answer) {
@@ -68,6 +74,8 @@ export class DiagnosticComponent implements OnInit {
       this.currentQuestion = Object.assign({}, questionnaire[oldQuestion.nextQuestionId]);
     }
 
+    // Tests locaux uniquement - Pour n'afficher qu'une seule question
+    // this.surveyFinished = true;
     const answeredQuestion = new AnsweredQuestion(
       oldQuestion.id,
       nextQuestionId,
@@ -105,6 +113,11 @@ export class DiagnosticComponent implements OnInit {
         case AnswerType.PostalCode:
           answerValue = this.inputPostalCode;
           break;
+
+        case AnswerType.Contact:
+          answerValue = this.inputContact;
+          break;
+
       }
     }
 
@@ -198,6 +211,10 @@ export class DiagnosticComponent implements OnInit {
 
   public isPostalCode(question: Question): boolean {
     return question.answerType === AnswerType.PostalCode;
+  }
+
+  public isContact(question: Question): boolean {
+    return question.answerType === AnswerType.Contact;
   }
 
   public showParacetamolOnly(question: Question): boolean {
