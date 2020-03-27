@@ -12,16 +12,16 @@
     <div *ngIf="isAppeler15() || isAppelerMedecin()">
       <h4 class="text-center my-4">
         <strong *ngIf="isAppeler15()">Vos symptômes nécessitent <u>une prise en charge.</u></strong>
-        <strong *ngIf="isTestPrelevement()">Vos symptômes nécessitent <u>un test par prélèvement.</u></strong>
-        <strong *ngIf="isAppelerMedecin()">Vos symptômes nécessitent <u>une consultation médicale.</u></strong>
+        <!--strong *ngIf="isTestPrelevement()">Vos symptômes nécessitent <u>un test par prélèvement.</u></strong-->
+        <strong *ngIf="isTestPrelevement() || isAppelerMedecin()">Vos symptômes nécessitent <u>une consultation médicale.</u></strong>
       </h4>
 
       <div class="alert alert-primary" role="alert">
         <h4 class="text-center">
           <fa-icon [icon]="['fa', 'exclamation-triangle']"></fa-icon>
           <strong *ngIf="isAppeler15()"> Appelez le 15.</strong>
-          <strong *ngIf="isTestPrelevement()"> Appelez le {{localNumber}} pour connaître le centre de test le plus proche de chez vous.</strong>
-          <strong *ngIf="isAppelerMedecin()"> Contactez votre médecin traitant.</strong>
+          <!--strong *ngIf="isTestPrelevement()"> Appelez le {{localNumber}} pour connaître le centre de test le plus proche de chez vous.</strong-->
+          <strong *ngIf="isTestPrelevement() || isAppelerMedecin()"> Contactez votre médecin traitant.</strong>
         </h4>
 
         <p *ngIf="isAppeler15()" class="mb-0"> Suivant votre ville et votre état de santé, le SAMU pourra vous orienter vers un dispensaire de médecine générale ou un centre de test par prélèvement.</p>

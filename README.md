@@ -27,7 +27,9 @@ Eviter un engorgement du 15 et du Médipôle pour des cas non prioritaires/état
 
 2 modes de décision sont actuellement possibles : le mode **par points** et le mode **par catégorie**.
 
-> NB : Le mode actuel de l'application est le mode **par points** (appliqué actuellement par le gouvernent de Nouvelle-Calédonie)
+> Le mode actuel de l'application est le mode **par points** (appliqué actuellement par le gouvernent de Nouvelle-Calédonie)
+
+[//]: # "> Le mode actuel de l'application est le mode **par catégorie** (suite à échange avec un médecin de la DPASS qui m'a indiqué que le mode par points avait été appliqué surtout au tout début de l'épidémie en Nouvelle-Calédonie)"
 
 ### Mode par points
 
@@ -37,21 +39,21 @@ En fonction de la gravité, chaque question a un nombre de points qui lui est at
 
 ![image](doc/COVIDiag.nc-ModePoints-ArbreDecision.png)
 
-> NB : Les documents du Gouvernement de Nouvelle-Calédonie en [annexes](#formulaire-gouv-nc) ont été utilisés pour déterminer ces décisions. 
+> Les documents du Gouvernement de Nouvelle-Calédonie en [annexes](#formulaire-gouv-nc) ont été utilisés pour déterminer ces décisions. 
 
 ### Mode par catégorie 
 
 On part du postulat de départ que les réponses aux différentes questions sont classées dans 3 catégories différentes :
 
-- Signes cliniques
-- Signes de gravité
+- Signes cliniques hors catégorie de gravité
 - Facteurs de risque
+- Signes de gravité
 
 **Pour déterminer la recommandation, les règles suivantes s'appliquent :**
 
 ![image](doc/COVIDiag.nc-ModeCategories-ArbreDecision.png)
 
-> NB : Ce diagramme est en cours d'élaboration et n'a pas été à ce jour validé par les services sanitaires de Nouvelle-Calédonie. Son utilisation n'est donc pour le moment pas applicable.
+> Cet arbre de décision est systématiquement mis à jour en collaboration étroite avec un médecin de la DPASS de Nouvelle-Calédonie. Il n'a cependant pas encore été validé par la DASS à ce jour. Son utilisation n'est donc pour le moment pas applicable.
 
 ## Annexes
 ### Formulaire Gouv NC
@@ -59,7 +61,7 @@ On part du postulat de départ que les réponses aux différentes questions sont
 ![alt text](doc/NC-PointsQuestions.png "Points attribués à chaque question")
 
 #### Diagramme de décision
-> NB : L'application s'arrête actuellement au bloc de décision "PAS DE CRITERE(S) DE GRAVITE (2B)", la suite étant gérée par téléphone.
+> L'application s'arrête actuellement au bloc de décision "PAS DE CRITERE(S) DE GRAVITE (2B)", la suite étant gérée par téléphone.
 
 ![alt text](doc/NC-DiagrammeDecision.png "Diagramme de décision par points")
 
@@ -74,7 +76,7 @@ On part du postulat de départ que les réponses aux différentes questions sont
 2. Lancer `npm start` pour démarrer l'application
 3. Naviguer vers `http://localhost:4200/`
 
-> NB : L'application se rafraichira ensuite automatiquement à chaque modification d'une des sources (hors config)
+> L'application se rafraichira ensuite automatiquement à chaque modification d'une des sources (hors config)
 
 ## Build
 
@@ -90,16 +92,16 @@ Lancer `ng build --prod` si l'objectif est de déployer sur un serveur distant.
 2. Lancer `firebase deploy`
 3. L'application déployée est ensuite accessible sur [https://covidiagnc.web.app/](https://covidiagnc.web.app/)
 
-> NB : La configuration est dans le fichier [firebase.json](firebase.json).
+> La configuration est dans le fichier [firebase.json](firebase.json).
 
 ## Tests unitaires
 
-> NB : Non applicable pour l'instant
+> Non applicable pour l'instant
 
 Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
 ## Tests end-to-end
 
-> NB : Non applicable pour l'instant
+> Non applicable pour l'instant
 
 Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).

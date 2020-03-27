@@ -104,8 +104,7 @@ export class RecommendationComponent implements OnInit {
             if (this.nbGravitySigns > 0) {
               this.recommendationResult = RecommendationType.Appeler15;
             } else {
-              // Dans un premier temps le 15, si le service devient saturé il faudra passer sur le médecin/centre de proximité (TestPrelevement / AppelerMedecin)
-              this.recommendationResult = RecommendationType.Appeler15;
+              this.recommendationResult = RecommendationType.AppelerMedecin;
             }
           } else {
             if (this.nbGravitySigns > 0) {
