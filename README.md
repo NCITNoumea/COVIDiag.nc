@@ -8,8 +8,8 @@ Projet généré via [Angular CLI](https://github.com/angular/angular-cli) versi
   - [Idée de départ](#idée-de-départ)
   - [Objectif](#objectif)
   - [Diagramme de décision](#diagramme-de-décision)
-    - [Mode par points](#mode-par-points)
     - [Mode par catégorie](#mode-par-catégorie)
+    - [Mode par points](#mode-par-points)
   - [Annexes](#annexes)
 - [Développement](#développement)
 
@@ -31,16 +31,6 @@ Eviter un engorgement du 15 et du Médipôle pour des cas non prioritaires/état
 
 > Le mode actuel de l'application est le mode **par catégorie** (suite à échange avec un médecin de la DPASS qui a indiqué que le mode par points, qui était appliqué au tout début de l'épidémie, n'est plus appliqué)
 
-### Mode par points
-
-En fonction de la gravité, chaque question a un nombre de points qui lui est attribué. Si la réponse à la question est **Oui**, les points sont additionnés. 
-
-**Pour déterminer la recommandation, les règles suivantes s'appliquent :**
-
-![image](doc/COVIDiag.nc-ModePoints-ArbreDecision.png)
-
-> Les documents du Gouvernement de Nouvelle-Calédonie en [annexes](#formulaire-gouv-nc) ont été utilisés pour déterminer ces décisions. 
-
 ### Mode par catégorie 
 
 On part du postulat de départ que les réponses aux différentes questions sont classées dans 3 catégories différentes :
@@ -54,6 +44,16 @@ On part du postulat de départ que les réponses aux différentes questions sont
 ![image](doc/COVIDiag.nc-ModeCategories-ArbreDecision.png)
 
 > Cet arbre de décision est systématiquement mis à jour en collaboration étroite avec un médecin de la DPASS de Nouvelle-Calédonie. Il n'a cependant pas encore été validé par la DASS à ce jour. 
+
+### Mode par points
+
+En fonction de la gravité, chaque question a un nombre de points qui lui est attribué. Si la réponse à la question est **Oui**, les points sont additionnés. 
+
+**Pour déterminer la recommandation, les règles suivantes s'appliquent :**
+
+![image](doc/COVIDiag.nc-ModePoints-ArbreDecision.png)
+
+> Les documents du Gouvernement de Nouvelle-Calédonie en [annexes](#formulaire-gouv-nc) ont été utilisés pour déterminer ces décisions. 
 
 ## Annexes
 ### Formulaire Gouv NC
