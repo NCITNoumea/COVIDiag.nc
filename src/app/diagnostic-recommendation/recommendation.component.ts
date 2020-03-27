@@ -27,7 +27,7 @@ export class RecommendationComponent implements OnInit {
     console.log(this.surveyResults);
 
     // On défini ici le mode de calcul de la recommandation : basée sur le score ou sur les catégories de questions
-    this.processMode = SurveyRecommendationProcessMode.Score;
+    this.processMode = SurveyRecommendationProcessMode.Categories;
 
     this.processLocalNumber();
     this.processSurveyRecommendation();

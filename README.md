@@ -27,9 +27,9 @@ Eviter un engorgement du 15 et du Médipôle pour des cas non prioritaires/état
 
 2 modes de décision sont actuellement possibles : le mode **par points** et le mode **par catégorie**.
 
-> Le mode actuel de l'application est le mode **par points** (appliqué actuellement par le gouvernent de Nouvelle-Calédonie)
+[//]: # "> Le mode actuel de l'application est le mode **par points** (appliqué actuellement par le gouvernent de Nouvelle-Calédonie)"
 
-[//]: # "> Le mode actuel de l'application est le mode **par catégorie** (suite à échange avec un médecin de la DPASS qui m'a indiqué que le mode par points avait été appliqué surtout au tout début de l'épidémie en Nouvelle-Calédonie)"
+> Le mode actuel de l'application est le mode **par catégorie** (suite à échange avec un médecin de la DPASS qui a indiqué que le mode par points, qui était appliqué au tout début de l'épidémie, n'est plus appliqué)
 
 ### Mode par points
 
@@ -53,7 +53,7 @@ On part du postulat de départ que les réponses aux différentes questions sont
 
 ![image](doc/COVIDiag.nc-ModeCategories-ArbreDecision.png)
 
-> Cet arbre de décision est systématiquement mis à jour en collaboration étroite avec un médecin de la DPASS de Nouvelle-Calédonie. Il n'a cependant pas encore été validé par la DASS à ce jour. Son utilisation n'est donc pour le moment pas applicable.
+> Cet arbre de décision est systématiquement mis à jour en collaboration étroite avec un médecin de la DPASS de Nouvelle-Calédonie. Il n'a cependant pas encore été validé par la DASS à ce jour. 
 
 ## Annexes
 ### Formulaire Gouv NC

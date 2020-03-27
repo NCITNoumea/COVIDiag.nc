@@ -55,6 +55,7 @@ export type QuestionId =
   | 'repos_demi_journee'
   | 'impossibilite_alimentation'
   | 'manque_souffle_inhabituel'
+  | 'malaise_confusion_altération_conscience'
   ;
 
 /**
@@ -74,7 +75,7 @@ export type QuestionCategoryId =
 export const questionnaire = {
     fievre: new Question(
       'fievre',
-      'signe_gravite',
+      'signe_clinique',
       5,
       'Avez-vous plus de 38°c de fièvre ?',
       AnswerType.Binary,
@@ -99,25 +100,16 @@ export const questionnaire = {
     ),*/
     toux: new Question(
       'toux',
-      'signe_gravite',
+      'signe_clinique',
       5,
       'Ces derniers jours, avez-vous une toux ou une augmentation de votre toux habituelle ?',
-      AnswerType.Binary,
-      [ { label: 'Oui' }, { label: 'Non' } ],
-      'difficulte_respiratoire'
-    ),
-    difficulte_respiratoire: new Question(
-      'difficulte_respiratoire',
-      'signe_gravite',
-      5,
-      'Ces dernieres 24h, avez-vous noté une gène respiratoire inhabituelle ?',
       AnswerType.Binary,
       [ { label: 'Oui' }, { label: 'Non' } ],
       'gout_odorat'
     ),
     gout_odorat: new Question(
       'gout_odorat',
-      'signe_gravite',
+      'signe_clinique',
       6,
       'Ces derniers jours, avez-vous noté une forte diminution ou perte de votre goût ou de votre odorat ?',
       AnswerType.Binary,
@@ -138,6 +130,33 @@ export const questionnaire = {
       'signe_clinique',
       1,
       'Ressentez-vous des douleurs musculaires ?',
+      AnswerType.Binary,
+      [ { label: 'Oui' }, { label: 'Non' } ],
+      'difficulte_respiratoire'
+    ),
+    difficulte_respiratoire: new Question(
+      'difficulte_respiratoire',
+      'signe_gravite',
+      5,
+      'Ces dernieres 24h, avez-vous noté une gène respiratoire inhabituelle ?',
+      AnswerType.Binary,
+      [ { label: 'Oui' }, { label: 'Non' } ],
+      'malaise_confusion_altération_conscience'
+    ),
+    malaise_confusion_altération_conscience: new Question(
+      'malaise_confusion_altération_conscience',
+      'signe_gravite',
+      5,
+      'Ces derniers jours, avez-vous fait un ou plusieurs malaises ? Votre entourage a t\'il observé une confusion chez vous ces derniers jours ?',
+      AnswerType.Binary,
+      [ { label: 'Oui' }, { label: 'Non' } ],
+      'impossibilite_alimentation'
+    ),
+    impossibilite_alimentation: new Question(
+      'impossibilite_alimentation',
+      'signe_gravite',
+      5,
+      'Êtes vous dans l\'impossibilité de vous alimenter ou de boire depuis 24 heures ou plus ?',
       AnswerType.Binary,
       [ { label: 'Oui' }, { label: 'Non' } ],
       'fatigue_inhabituelle'
@@ -174,13 +193,6 @@ export const questionnaire = {
         [ { label: 'Oui' }, { label: 'Non' } ],
         'impossibilite_alimentation'
     ),*/
-    /*impossibilite_alimentation: new Question(
-      'impossibilite_alimentation',
-      'Êtes vous dans l\'impossibilité de vous alimenter ou de boire depuis 24 heures ou plus?',
-      AnswerType.Binary,
-      [ { label: 'Oui' }, { label: 'Non' } ],
-      'voyage_recent'
-    ),*/
     /*manque_souffle_inhabituel: new Question(
         'manque_souffle_inhabituel',
         'Dans les dernières 24 heures, avez-vous noté un manque de souffle inhabituel lorsque vous parlez ou faites un petit effort ?',
@@ -190,7 +202,7 @@ export const questionnaire = {
     ),*/
     voyage_recent: new Question(
       'voyage_recent',
-      'critere_isolement_sanitaire',
+      'facteurs_risque',
       5,
       'Avez vous voyagé en dehors de Nouvelle-Calédonie lors des 15 derniers jours ?',
       AnswerType.Binary,
@@ -199,7 +211,7 @@ export const questionnaire = {
     ),
     contact_voyageur_symptomatique: new Question(
       'contact_voyageur_symptomatique',
-      'critere_isolement_sanitaire',
+      'facteurs_risque',
       5,
       'Sur les 15 derniers jours, avez vous été en contact avec une personne rentrée de l\'étranger et présentant des  signes grippaux ?',
       AnswerType.Binary,
