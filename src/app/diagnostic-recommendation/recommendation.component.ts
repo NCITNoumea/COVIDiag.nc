@@ -1,5 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
-import * as firebase from "firebase";
+
+import * as firebase from 'firebase/app';
+import 'firebase/firestore';
 
 import { IIndexedQuestion, IMapSurvey } from 'src/app/shared/models/question.model';
 import { RecommendationType, SurveyRecommendationProcessMode } from 'src/app/shared/models/recommendation.model';
