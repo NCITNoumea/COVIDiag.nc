@@ -83,11 +83,25 @@ On part du postulat de départ que les réponses aux différentes questions sont
 ### Build local 
 Lancer `ng build` pour compiler le projet. Les fichiers compilés sont stockés dans le répertoire `dist/`.
 
-### Build avant déploiement 
-Lancer `ng build --prod` si l'objectif est de déployer sur un serveur distant.
+> Lancer `ng build --prod` si l'objectif est de déployer sur un serveur distant.
+
+### Build & Run Docker
+Build 
+```
+docker build --tag covidiag.nc:1.0 .
+```
+
+Run
+```
+docker run --publish 8000:80 --detach --name COVIDiag.nc covidiag.nc:1.0
+```
+
+Remove container
+```
+docker rm --force COVIDiag.nc
+```
 
 ## Déploiement Firebase
-
 1. Lancer `ng build --prod` pour effectuer un build de déploiement
 2. Lancer `firebase deploy`
 3. L'application déployée est ensuite accessible sur [https://covidiagnc.web.app/](https://covidiagnc.web.app/)
