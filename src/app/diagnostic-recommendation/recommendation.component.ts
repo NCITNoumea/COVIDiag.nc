@@ -75,6 +75,9 @@ export class RecommendationComponent implements OnInit {
     // Valeur par défaut
     this.recommendationResult = RecommendationType.Appeler15;
 
+    // Calcul des éléments saisis (input)
+    this.processInputResults();
+
     console.log("Score : " + this.surveyScore
                 + " / Signes gravité : " + this.nbGravitySigns
                 + " / Facteurs de risque : " + this.nbRiskFactors
@@ -114,7 +117,7 @@ export class RecommendationComponent implements OnInit {
             }
           }
         } else {
-          if (this.nbGravitySigns > 1) {
+          if (this.nbGravitySigns > 0) {
             this.recommendationResult = RecommendationType.Appeler15;
           } else {
             this.recommendationResult = RecommendationType.RAS;
@@ -127,12 +130,49 @@ export class RecommendationComponent implements OnInit {
                 + " : " + RecommendationType[this.recommendationResult]);
   }
 
+  private processInputResults() {
+    // IMC
+    let heightAnswer: IIndexedQuestion = this.surveyResults.get('taille');
+    let weightAnswer: IIndexedQuestion = this.surveyResults.get('poids');
+    if (heightAnswer != undefined && weightAnswer != undefined) {
+      let heightInMeters: number = (+heightAnswer.answer)/100;
+      let weightInKg: number = +weightAnswer.answer;
+
+      // IMC = Poids / Taille au carré
+      let IMC: number = weightInKg / (heightInMeters * heightInMeters);
+
+      // Si IMC >= 40 (obésité morbide) : facteur de rique en plus
+      if (IMC >= 40) {
+        console.log("IMC >= 40 => Facteur de risque supplémentaire");
+        this.nbRiskFactors++;
+      }
+    }
+
+    // Age > 70
+    let ageAnswer: IIndexedQuestion = this.surveyResults.get('age');
+    if (ageAnswer != undefined) {
+      let age: number = +ageAnswer.answer;
+
+      // Si IMC >= 40 (obésité morbide) : facteur de rique en plus
+      if (age >= 70) {
+        console.log("Age >= 70 => Facteur de risque supplémentaire");
+        this.nbRiskFactors++;
+      }
+    }
+
+  }
+
   private storeResultsToDatastore() {
     var db = firebase.firestore();
 
     // Conversion de la Map de réponses en objet
     let surveyResultsObject = Array.from(this.surveyResults).reduce((obj, [key, value]) => {
-      obj[key] = value;
+      if (value != undefined) {
+        if (value.answer == undefined) {
+          value.answer = "";
+        }
+      }
+      obj[key] = value != undefined ? value : "";
       return obj;
     }, {});
 
@@ -151,10 +191,10 @@ export class RecommendationComponent implements OnInit {
 
     db.collection("survey").doc(id).set(surveyData)
       .then(function() {
-        console.log("Document successfully written!");
+        console.log("Formulaire soumis avec succès !");
       })
       .catch(function(error) {
-        console.error("Error adding document: ", error);
+        console.error("Erreur lors de la soumission du formulaire : ", error);
       });
   }
 

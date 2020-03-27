@@ -96,6 +96,8 @@ Run
 docker run --publish 8000:80 --detach --name COVIDiag.nc covidiag.nc:1.0
 ```
 
+> L'application est alors disponible sur [http://localhost:8000/](http://localhost:8000/)
+
 Remove container
 ```
 docker rm --force COVIDiag.nc
