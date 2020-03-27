@@ -147,7 +147,7 @@ export class RecommendationComponent implements OnInit {
       processMode: SurveyRecommendationProcessMode[this.processMode]
     }
 
-    let id = new Date().toISOString();
+    let id: string = this.generateId();
 
     db.collection("survey").doc(id).set(surveyData)
       .then(function() {
@@ -156,6 +156,14 @@ export class RecommendationComponent implements OnInit {
       .catch(function(error) {
         console.error("Error adding document: ", error);
       });
+  }
+
+  private generateId(): string {
+    let currentTime: Date = new Date();
+    let currentTimezoneOffset: number = currentTime.getTimezoneOffset() * 60 * 1000;
+    let currentLocalTime: number = currentTime.getTime() - currentTimezoneOffset;
+    let localDate: Date = new Date(currentLocalTime);
+    return localDate.toISOString();
   }
 
   public isAppeler15(): boolean {
