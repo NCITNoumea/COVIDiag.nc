@@ -56,6 +56,7 @@ export type QuestionId =
   | 'impossibilite_alimentation'
   | 'manque_souffle_inhabituel'
   | 'malaise_confusion_altération_conscience'
+  | 'contact_renseigne'
   ;
 
 /**

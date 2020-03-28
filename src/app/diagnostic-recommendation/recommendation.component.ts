@@ -33,6 +33,7 @@ export class RecommendationComponent implements OnInit {
 
     this.processLocalNumber();
     this.processSurveyRecommendation();
+    this.sendEmailToDASS();
     this.storeResultsToDatastore();
   }
 
@@ -161,11 +162,23 @@ export class RecommendationComponent implements OnInit {
         this.nbRiskFactors++;
       }
     }
+  }
 
+  private sendEmailToDASS() {
+    // TODO - Envoyer un e-mail à la DASS si le contact est renseigné (mettre l'email dans les variables d'environnement)
   }
 
   private storeResultsToDatastore() {
     var db = firebase.firestore();
+
+    // On supprime le contact pour ne pas le stocker en BDD
+    let contactIndexedQuestion: IIndexedQuestion = this.surveyResults.get('contact');
+    this.surveyResults.delete('contact');
+    this.surveyResults.set('contact_renseigne', {
+      index: contactIndexedQuestion.index,
+      question: null,
+      answer: contactIndexedQuestion.answer != undefined ? 'Oui' : 'Non'
+    });
 
     // Conversion de la Map de réponses en objet
     let surveyResultsObject = Array.from(this.surveyResults).reduce((obj, [key, value]) => {
