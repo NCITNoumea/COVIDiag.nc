@@ -1,5 +1,5 @@
 import { Component, Output, EventEmitter } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { NgForm, NgModel } from '@angular/forms';
 import { Answer } from 'src/app/shared/models/answer.model';
 
 @Component({
@@ -9,6 +9,8 @@ import { Answer } from 'src/app/shared/models/answer.model';
 })
 export class AgeFormComponent {
   @Output() answerEmitter = new EventEmitter();
+
+  input: NgModel;
 
   constructor() { }
 

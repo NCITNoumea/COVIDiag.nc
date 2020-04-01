@@ -1,5 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { NgForm, NgModel } from '@angular/forms';
 import { Answer } from 'src/app/shared/models/answer.model';
 
 @Component({
@@ -11,6 +11,7 @@ export class TemperatureFormComponent implements OnInit {
   @Output() answerEmitter = new EventEmitter();
 
   defaultTemperature: number;
+  input: NgModel;
 
   constructor() { }
 

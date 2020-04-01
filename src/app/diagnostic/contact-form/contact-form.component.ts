@@ -1,5 +1,5 @@
 import { Component, Output, EventEmitter } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { NgForm, NgModel } from '@angular/forms';
 import { Answer } from 'src/app/shared/models/answer.model';
 
 @Component({
@@ -9,6 +9,9 @@ import { Answer } from 'src/app/shared/models/answer.model';
 })
 export class ContactFormComponent {
   @Output() answerEmitter = new EventEmitter();
+
+  inputContact: NgModel;
+  inputRgpd: NgModel;
 
   constructor() { }
 
