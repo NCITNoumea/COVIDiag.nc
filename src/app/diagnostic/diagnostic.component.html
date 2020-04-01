@@ -5,80 +5,14 @@
       <h4>{{currentQuestion.question}}</h4>
 
       <!-- Si INPUT il y a -->
-      <form *ngIf="!isAnswerOnClick(currentQuestion)">
-        <div *ngFor='let answer of currentQuestion.answers'>
-          <div class="form-row" *ngIf="isTemperature(currentQuestion)">
-            <!-- TEMPERATURE -->
-            <div class="form-group mx-3 mb-0">
-              <input type="number" class="form-control text-center" step="0.1" [value]="inputTemperature" (input)="inputTemperature = $event.target.value;" />
-            </div>
-            <div class="form-group mx-3 mb-0">
-              <label>°c</label>
-            </div>
-          </div>
-
-          <!-- AGE -->
-          <div class="form-row justify-content-center" *ngIf="isAge(currentQuestion)">
-            <div class="form-group mx-3 mb-0">
-              <input type="number" class="form-control text-center" step="1" placeholder="ex : 45" (input)="inputAge = $event.target.value;"/>
-            </div>
-            <div class="form-group mb-0 mt-2">
-              <label>ans</label>
-            </div>
-          </div>
-
-          <!-- POIDS -->
-          <div class="form-row justify-content-center" *ngIf="isPoids(currentQuestion)">
-            <div class="form-group mx-3 mb-0">
-              <input type="number" class="form-control text-center" step="1" placeholder="ex : 70" (input)="inputPoids = $event.target.value;" />
-            </div>
-            <div class="form-group mb-0 mt-2">
-              <label>kg</label>
-            </div>
-          </div>
-
-          <!-- TAILLE -->
-          <div class="form-row justify-content-center" *ngIf="isTaille(currentQuestion)">
-            <div class="form-group mx-3 mb-0">
-              <input type="number" class="form-control text-center" step="1" placeholder="ex : 175" (input)="inputTaille = $event.target.value;" />
-            </div>
-            <div class="form-group mb-0 mt-2">
-              <label>cm</label>
-            </div>
-          </div>
-
-          <!-- CODE POSTAL -->
-          <div class="form-row justify-content-center" *ngIf="isPostalCode(currentQuestion)">
-            <div class="form-group mx-3 mb-0">
-              <input class="form-control text-center" pattern="[0-9]{5}" type="text" placeholder="ex : 98800" (input)="inputPostalCode = $event.target.value;"/>
-            </div>
-          </div>
-
-          <!-- CONTACT -->
-          <div *ngIf="isContact(currentQuestion)">
-            <div class="form-row justify-content-center">
-              <div class="col-12 mb-0 mt-2">
-                <input class="form-control text-center" type="text" placeholder="ex : 12.34.56 ou michel.dupond@gmail.com" (input)="inputContact = $event.target.value;"/>
-              </div>
-            </div>
-            <div class="form-row">
-                <div class="form-check mb-2 mt-4 text-left">
-                    <input type="checkbox" class="form-check-input" id="rgpdConsent" required>
-                    <label class="form-check-label" for="rgpdConsent">
-                      En soumettant ce formulaire, j'accepte que les informations saisies soient exploitées par les services sanitaires de Nouvelle-Calédonie dans un objectif de prise en charge et de recensement des malades du COVID-19.
-                    </label>
-                </div>
-            </div>
-          </div>
-
-          <!-- CONTINUER - TODO Bouton grisé tant que input pas renseigné -->
-          <div class="form-row justify-content-center">
-            <button class="mb-0 btn btn-info my-2" type="submit" (click)="onClick(answer)">
-                {{answer.label}}
-            </button>
-          </div>
-        </div>
-      </form>
+      <div *ngIf="!isAnswerOnClick(currentQuestion)">
+        <app-temperature-form *ngIf="isTemperature(currentQuestion)" (answerEmitter)="onClick($event)"></app-temperature-form>
+        <app-age-form *ngIf="isAge(currentQuestion)" (answerEmitter)="onClick($event)"></app-age-form>
+        <app-taille-form *ngIf="isTaille(currentQuestion)" (answerEmitter)="onClick($event)"></app-taille-form>
+        <app-poids-form *ngIf="isPoids(currentQuestion)" (answerEmitter)="onClick($event)"></app-poids-form>
+        <app-code-postal-form *ngIf="isPostalCode(currentQuestion)" (answerEmitter)="onClick($event)"></app-code-postal-form>
+        <app-contact-form *ngIf="isContact(currentQuestion)" (answerEmitter)="onClick($event)"></app-contact-form>
+      </div>
 
       <!-- OUI/NON -->
       <div class="row" *ngIf="currentQuestion.answers.length == 2">

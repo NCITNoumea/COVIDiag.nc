@@ -1,0 +1,22 @@
+<form #form="ngForm" (ngSubmit)="onSubmit(form)" autocomplete="off">
+    <div class="form-row justify-content-center">
+        <div class="col-12 mb-0 mt-2" [ngClass]="{'error': form.controls.contact?.invalid && form.controls.contact?.touched}">
+            <input [(ngModel)]="inputContact" id="contact" name="contact" type="text" class="form-control text-center" placeholder="ex : 12.34.56 ou michel.dupond@gmail.com"/>
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="form-check mb-2 mt-4 text-left">
+            <input [(ngModel)]="inputRgpd" id="rgpdConsent" name="rgpdConsent" type="checkbox" class="form-check-input" [rgpdRequiredIf]="!!inputContact">
+            <label class="form-check-label" for="rgpdConsent">
+                En soumettant ce formulaire, j'accepte que les informations saisies soient exploitées par les services sanitaires de Nouvelle-Calédonie à des fins de prise en charge et de recensement des malades du COVID-19.
+            </label>
+        </div>
+    </div>
+
+    <div class="form-row justify-content-center">
+        <button class="mb-0 btn btn-info my-2" [disabled]="!form.valid" type="submit">
+            Continuer
+        </button>
+    </div>
+</form>

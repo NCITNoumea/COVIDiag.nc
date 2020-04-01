@@ -1,0 +1,15 @@
+<form #form="ngForm" (ngSubmit)="onSubmit(form)" autocomplete="off">
+    <div class="form-row justify-content-center">
+        <div class="form-row justify-content-center">
+            <div class="form-group mx-3 mb-0" [ngClass]="{'error': form.controls.codePostal?.invalid && form.controls.codePostal?.touched}">
+                <input [(ngModel)]="input" id="codePostal" name="codePostal" type="text" pattern="[0-9]{5}" class="form-control text-center" placeholder="ex : 98800"/>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-row justify-content-center">
+        <button class="mb-0 btn btn-info my-2" [disabled]="!form.valid" type="submit">
+            Continuer
+        </button>
+    </div>
+</form>

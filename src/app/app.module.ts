@@ -35,6 +35,13 @@ import { FooterComponent } from "./shared/footer/footer.component";
 import { RecommendationComponent } from "./diagnostic-recommendation/recommendation.component";
 import { DiagnosticResultComponent } from "./diagnostic-result/diagnostic-result.component";
 import { ParacetamolOnlyComponent } from "./home/paracetamol-only/paracetamol-only.component";
+import { RgpdRequiredIfDirective } from "./diagnostic/contact-form/rgpd-validator.directive";
+import { AgeFormComponent } from './diagnostic/age-form/age-form.component';
+import { TailleFormComponent } from './diagnostic/taille-form/taille-form.component';
+import { PoidsFormComponent } from './diagnostic/poids-form/poids-form.component';
+import { TemperatureFormComponent } from './diagnostic/temperature-form/temperature-form.component';
+import { CodePostalFormComponent } from './diagnostic/code-postal-form/code-postal-form.component';
+import { ContactFormComponent } from './diagnostic/contact-form/contact-form.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +58,14 @@ import { ParacetamolOnlyComponent } from "./home/paracetamol-only/paracetamol-on
     FooterComponent,
     RecommendationComponent,
     DiagnosticResultComponent,
-    ParacetamolOnlyComponent
+    ParacetamolOnlyComponent,
+    AgeFormComponent,
+    TailleFormComponent,
+    PoidsFormComponent,
+    TemperatureFormComponent,
+    CodePostalFormComponent,
+    ContactFormComponent,
+    RgpdRequiredIfDirective
   ],
   imports: [
     BrowserModule,

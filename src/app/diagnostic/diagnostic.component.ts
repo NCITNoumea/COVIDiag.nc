@@ -2,6 +2,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 import { Question, questionnaire, IIndexedQuestion, IMapSurvey, QuestionId } from '../shared/models/question.model';
 import { Answer, AnswerType, AnsweredQuestion } from '../shared/models/answer.model';
+import { NgForm } from '@angular/forms';
 
 
 @Component({
@@ -21,13 +22,6 @@ export class DiagnosticComponent implements OnInit {
   public nbRiskFactors: number;
   public nbClinicSigns: number;
 
-  public inputTemperature: number;
-  public inputAge: number;
-  public inputTaille: number;
-  public inputPoids: number;
-  public inputPostalCode: string;
-  public inputContact: string;
-
   @Output() answerEvent = new EventEmitter<AnsweredQuestion>();
 
   constructor() { }
@@ -46,7 +40,6 @@ export class DiagnosticComponent implements OnInit {
     this.nbClinicSigns = 0;
 
     this.currentQuestionNumber = 1;
-    this.inputTemperature = 37.5;
     this.currentQuestion = Object.assign({}, questionnaire.fievre);
 
     var questionnaireArray = Object.keys(questionnaire).map(function(questionId){
@@ -87,46 +80,12 @@ export class DiagnosticComponent implements OnInit {
   }
 
   private pushNode(question: Question, answer: Answer): void {
-    let answerValue: string = "";
-
-    // Récupération de la réponse
-    if (this.isAnswerOnClick(question)) {
-      answerValue = answer.label
-    } else {
-      switch (question.answerType) {
-        case AnswerType.Temperature:
-          answerValue = this.inputTemperature.toString();
-          break;
-
-        case AnswerType.Age:
-          answerValue = this.inputAge.toString();
-          break;
-
-        case AnswerType.Poids:
-          answerValue = this.inputPoids.toString();
-          break;
-
-        case AnswerType.Taille:
-          answerValue = this.inputTaille.toString();
-          break;
-
-        case AnswerType.PostalCode:
-          answerValue = this.inputPostalCode;
-          break;
-
-        case AnswerType.Contact:
-          answerValue = this.inputContact;
-          break;
-
-      }
-    }
-
     this.surveyResults.set(
       this.currentQuestion.id,
       {
         index: this.surveyResults.size,
         question: this.currentQuestion,
-        answer: answerValue
+        answer: answer.label
       }
     );
 
