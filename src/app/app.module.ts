@@ -42,6 +42,8 @@ import { PoidsFormComponent } from './diagnostic/poids-form/poids-form.component
 import { TemperatureFormComponent } from './diagnostic/temperature-form/temperature-form.component';
 import { CodePostalFormComponent } from './diagnostic/code-postal-form/code-postal-form.component';
 import { ContactFormComponent } from './diagnostic/contact-form/contact-form.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -73,7 +75,8 @@ import { ContactFormComponent } from './diagnostic/contact-form/contact-form.com
     FormsModule,
     FontAwesomeModule,
     ToastrModule.forRoot(),
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [
     //DiagService
